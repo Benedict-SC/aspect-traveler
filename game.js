@@ -5,7 +5,7 @@ var g = {};
 
 //create default manifest
 var manifest = [
-    {id:"bg",src:"assets/img/mockup/woodsbg.png"},
+    {id:"bg",src:"assets/img/ui/mtnbg.png"},
     {id:"overlay",src:"assets/img/ui/frame.png"},
     {id:"seed",src:"assets/img/ui/seed_base.png"},
     {id:"char",src:"assets/img/mockup/char.png"},
