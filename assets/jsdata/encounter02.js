@@ -20,7 +20,7 @@ encounters[id] = {
             options:[
                 {text: "...No, keep moving.",effect:"delta",cold:1,frameIdx:2},
                 {text: "Let her melt the ice",effect:"delta",bond:1,frameIdx:3},
-                {text: "Try and break them out yourself",effect:"delta",heat:1,bond:-1,frameIdx:5}
+                {text: "Try and break them out yourself",effect:"delta",heat:1,frameIdx:5}
             ]
         },
         {

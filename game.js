@@ -105,7 +105,6 @@ function loadEventFrame(encid, idx = 0){
     unloadEventFrame();
     if(encid == null) return;
     g.encid = encid;
-    console.log("%o",encounters)
     let enc = encounters[encid];
     let first = enc.frames[idx];
     let options = first.options;
@@ -149,6 +148,14 @@ function setOptions(options){
         optObj.addEventListener("click",function(event){
             if(opt.frameIdx){
                 loadEventFrame(g.encid,opt.frameIdx);
+            }
+            if(opt.effect == "delta"){
+                if(opt.bond){ updateMoteCount(0,opt.bond);}
+                if(opt.heat){ updateMoteCount(1,opt.heat);}
+                if(opt.cold){ updateMoteCount(2,opt.cold);}
+                if(opt.light){ updateMoteCount(3,opt.light);}
+                if(opt.earth){ updateMoteCount(4,opt.earth);}
+                if(opt.air){ updateMoteCount(5,opt.air);}
             }else if(opt.effect == "end"){
                 unloadEventFrame();
                 g.encid = null;
