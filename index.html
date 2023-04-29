@@ -3,10 +3,13 @@
         <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
         <script src="assets/jsdata/encounter01.js"></script>
         <script src="assets/jsdata/encounter02.js"></script>
+        <script src="assets/jsdata/enctest.js"></script>
         <script src="game.js"></script>
     </head>
     <body onload="initializeGame();">
-        <canvas id="maincanv" width="900" height="480"></canvas> 
-        <button onclick="loadTestEvent();">load event</button>
+        <canvas id="maincanv" width="900" height="480"></canvas><br/> 
+        <button onclick="loadEventFrame('e02',0);">load frozen travelers event</button><br/>
+        <button onclick="loadEventFrame('test',0);">load test event</button><br/>
+        <button onclick="loadEventFrame(document.getElementById('idinput').value,0);">load custom event</button> <input type="text" id="idinput"/>
     </body>
 </html>

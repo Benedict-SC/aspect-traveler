@@ -88,9 +88,17 @@ function tryInit(){
     loadEventFrame(g.encid);
     stage.update();
 }
+function getMoteById(moteid){
+    for(let i = 0; i < g.motes.length; i++){
+        if(g.motes[i].id == moteid.toUpperCase())
+            return g.motes[i];
+    }
+    return null;
+}
 function updateMoteCount(idx,delta){
     let mote = g.motes[idx];
     mote.count += delta;
+    if(mote.count < 0) mote.count = 0;
     let dotBox = mote.container.getChildByName("dots");
     dotBox.removeAllChildren();
     for(let i = 0; i < mote.count; i++){
@@ -118,6 +126,7 @@ function loadEventFrame(encid, idx = 0){
     g.encounterText.y = 261;
     stage.addChild(g.encounterImg);
     stage.addChild(g.encounterText);
+    console.log("we're setting options again right");
     setOptions(options);
     stage.update();
 }
@@ -134,43 +143,72 @@ function setOptions(options){
     g.options = [];
     for(let i = 0; i < options.length; i++){
         let opt = options[i];
+
+        let eventValid = true;
+        if(opt.condition){
+            if(opt.condition == "moteMaximum"){
+                let mote = getMoteById(opt.conditionMote);
+                eventValid = mote.count <= opt.conditionValue;
+            }else if(opt.condition == "moteMinimum"){
+                let mote = getMoteById(opt.conditionMote);
+                eventValid = mote.count >= opt.conditionValue;
+                console.log("min event is valid: " + eventValid);
+            }
+        }
+        let textColor = eventValid ? "#FFFFFF" : "#AAAAAA";
+        let bgColor = eventValid ? "#000000" : "#111111";
+
         let optObj = new createjs.Container();
-        let optText = new createjs.Text(opt.text,"14px Arial","#FFFFFF");
+        let optText = new createjs.Text(opt.text,"14px Arial",textColor);
         optText.x = 8;
         optText.y = 8;
         let width = optText.getBounds().width;
         let buttonbg = new createjs.Shape();
-        buttonbg.graphics.beginFill("#000000").drawRoundRect(0,0,width+18,30,9);
+        buttonbg.graphics.beginFill(bgColor).drawRoundRect(0,0,width+18,30,9);
         optObj.addChild(buttonbg);
         optObj.addChild(optText);
         optObj.x = 677;
         optObj.y = 115 + (i*40);
         //add button logic
-        optObj.addEventListener("click",function(event){
-            if(opt.frameIdx){
-                loadEventFrame(g.encid,opt.frameIdx);
-            }else if(opt.frameId){
-                for(let j = 0; j < enc.frames.length; j++){
-                    if(enc.frames[j].id == opt.frameId){
-                        loadEventFrame(g.encid,j);
-                        break;
+        if(eventValid){
+            optObj.addEventListener("click",function(event){
+                if(opt.effect == "delta"){
+                    if(opt.bond){ updateMoteCount(0,opt.bond);}
+                    if(opt.heat){ updateMoteCount(1,opt.heat);}
+                    if(opt.cold){ updateMoteCount(2,opt.cold);}
+                    if(opt.light){ updateMoteCount(3,opt.light);}
+                    if(opt.earth){ updateMoteCount(4,opt.earth);}
+                    if(opt.air){ updateMoteCount(5,opt.air);}
+                }else if(opt.effect == "end"){
+                    unloadEventFrame();
+                    g.encid = null;
+                }else{
+                    console.log(opt.effect);
+                }
+
+                if(opt.frameIdx || opt.frameIdx === 0){
+                    console.log("are we doing this right");
+                    loadEventFrame(g.encid,opt.frameIdx);
+                }else if(opt.frameId){
+                    for(let j = 0; j < enc.frames.length; j++){
+                        if(enc.frames[j].id == opt.frameId){
+                            loadEventFrame(g.encid,j);
+                            break;
+                        }
+                    }
+                }else if(opt.idPool){
+                    let randomIndex = Math.floor(Math.random() * opt.idPool.length);
+                    let randomId = opt.idPool[randomIndex];
+                    for(let j = 0; j < enc.frames.length; j++){
+                        if(enc.frames[j].id == randomId){
+                            loadEventFrame(g.encid,j);
+                            break;
+                        }
                     }
                 }
-            }
-            if(opt.effect == "delta"){
-                if(opt.bond){ updateMoteCount(0,opt.bond);}
-                if(opt.heat){ updateMoteCount(1,opt.heat);}
-                if(opt.cold){ updateMoteCount(2,opt.cold);}
-                if(opt.light){ updateMoteCount(3,opt.light);}
-                if(opt.earth){ updateMoteCount(4,opt.earth);}
-                if(opt.air){ updateMoteCount(5,opt.air);}
-            }else if(opt.effect == "end"){
-                unloadEventFrame();
-                g.encid = null;
-            }else{
-                console.log(opt.effect);
-            }
-        })
+                stage.update();
+            })
+        }
 
         g.options.push(optObj);
         stage.addChild(optObj);
