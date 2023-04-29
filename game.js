@@ -80,7 +80,7 @@ function tryInit(){
         moteContainer.y = 136 + (55*i);
         stage.addChild(moteContainer);
         g.motes[i].container = moteContainer;
-        updateMoteCount(i);
+        updateMoteCount(i,0);
     }
 
     g.options = [];
@@ -88,15 +88,15 @@ function tryInit(){
     loadEventFrame(g.encid);
     stage.update();
 }
-function updateMoteCount(idx){
+function updateMoteCount(idx,delta){
     let mote = g.motes[idx];
+    mote.count += delta;
     let dotBox = mote.container.getChildByName("dots");
     dotBox.removeAllChildren();
     for(let i = 0; i < mote.count; i++){
         let dot = new createjs.Bitmap(assets.motedot);
         dot.x = i*6;
         dot.y = (i%2 == 1 ? 8 : 0);
-        console.log("x and y are " + dot.x + " and " + dot.y);
         dotBox.addChild(dot);
     }
     stage.update();
@@ -105,17 +105,18 @@ function loadEventFrame(encid, idx = 0){
     unloadEventFrame();
     if(encid == null) return;
     g.encid = encid;
+    console.log("%o",encounters)
     let enc = encounters[encid];
     let first = enc.frames[idx];
     let options = first.options;
-    g.encounterText = new createjs.Text(first.text,"14px Arial","#FFFFFF");
+    g.encounterText = new createjs.Text(first.text,"13px Arial","#FFFFFF");
     g.encounterText.lineWidth = 520;
-    g.encounterText.lineHeight = 22;
+    g.encounterText.lineHeight = 21;
     g.encounterImg = new createjs.Bitmap(assets[enc.id + first.image]);
     g.encounterImg.x = 140;
     g.encounterImg.y = 110;
     g.encounterText.x = 140;
-    g.encounterText.y = 265;
+    g.encounterText.y = 261;
     stage.addChild(g.encounterImg);
     stage.addChild(g.encounterText);
     setOptions(options);
@@ -134,7 +135,7 @@ function setOptions(options){
     for(let i = 0; i < options.length; i++){
         let opt = options[i];
         let optObj = new createjs.Container();
-        let optText = new createjs.Text(opt.text,"16px Arial","#FFFFFF");
+        let optText = new createjs.Text(opt.text,"14px Arial","#FFFFFF");
         optText.x = 8;
         optText.y = 8;
         let width = optText.getBounds().width;
@@ -168,5 +169,5 @@ function onFilesComplete(event){
     tryInit();
 }
 function loadTestEvent(){
-    loadEventFrame("e01");
+    loadEventFrame("e02",0);
 }

@@ -1,4 +1,4 @@
-let id = "e01";
+var id = "e01";
 var encounters = encounters || {}
 encounters[id] = {
     id:id,
