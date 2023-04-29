@@ -130,6 +130,7 @@ function unloadEventFrame(){
     stage.update();
 }
 function setOptions(options){
+    let enc = encounters[g.encid];
     g.options = [];
     for(let i = 0; i < options.length; i++){
         let opt = options[i];
@@ -148,6 +149,13 @@ function setOptions(options){
         optObj.addEventListener("click",function(event){
             if(opt.frameIdx){
                 loadEventFrame(g.encid,opt.frameIdx);
+            }else if(opt.frameId){
+                for(let j = 0; j < enc.frames.length; j++){
+                    if(enc.frames[j].id == opt.frameId){
+                        loadEventFrame(g.encid,j);
+                        break;
+                    }
+                }
             }
             if(opt.effect == "delta"){
                 if(opt.bond){ updateMoteCount(0,opt.bond);}
