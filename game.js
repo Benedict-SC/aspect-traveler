@@ -126,7 +126,6 @@ function loadEventFrame(encid, idx = 0){
     g.encounterText.y = 261;
     stage.addChild(g.encounterImg);
     stage.addChild(g.encounterText);
-    console.log("we're setting options again right");
     setOptions(options);
     stage.update();
 }
@@ -152,7 +151,6 @@ function setOptions(options){
             }else if(opt.condition == "moteMinimum"){
                 let mote = getMoteById(opt.conditionMote);
                 eventValid = mote.count >= opt.conditionValue;
-                console.log("min event is valid: " + eventValid);
             }
         }
         let textColor = eventValid ? "#FFFFFF" : "#AAAAAA";
@@ -187,7 +185,6 @@ function setOptions(options){
                 }
 
                 if(opt.frameIdx || opt.frameIdx === 0){
-                    console.log("are we doing this right");
                     loadEventFrame(g.encid,opt.frameIdx);
                 }else if(opt.frameId){
                     for(let j = 0; j < enc.frames.length; j++){
