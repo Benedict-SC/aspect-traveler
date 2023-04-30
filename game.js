@@ -83,6 +83,10 @@ function buildGame(){
         g.motes[i].container = moteContainer;
         updateMoteCount(i,0);
     }
+    g.darkness = new createjs.Bitmap(assets.darkness);
+    g.darkness.alpha = 0;
+    g.darkPercent = 0;
+    stage.addChild(g.darkness);
 
     g.options = [];
     g.encid = "test";
@@ -181,6 +185,17 @@ function insertNewlines(textstring,width){
     }
     lines.push(currentLine);
     return lines.join("\n");
+}
+function getDarker(){
+    g.darkPercent += 0.15;
+    if(g.darkPercent > 1) g.darkPercent = 1;
+    g.darkness.alpha = g.darkPercent;
+    createjs.Sound.volume = userMasterVolumePref * (1 - g.darkPercent);
+}
+function breakDarkness(){
+    g.darkPercent = 0;
+    g.darkness.alpha = g.darkPercent;
+    createjs.Sound.volume = userMasterVolumePref * (1 - g.darkPercent);
 }
 createjs.Ticker.framerate = 60;
 function tick(event) { stage.update(event); }

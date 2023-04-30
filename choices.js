@@ -49,6 +49,9 @@ function setOptionBehavior(opt,optObj,enc){
         if(inputPaused()){
             return;
         }
+        if(opt.silence){
+            getDarker();
+        }
         let highestMoteAtStart = getHighestMote();
         if(opt.effect == "delta"){
             processMoteChanges(opt);
@@ -62,6 +65,8 @@ function setOptionBehavior(opt,optObj,enc){
             let efi = getEventFrameIndex(randomId,enc);
             processMoteChanges(opt.subOpts[randomIndex]);
             loadEventFrame(g.encid,efi);
+        }else if(opt.effect == "restoreVolume"){
+            breakDarkness();
         }else{
             createjs.Sound.play("button");
             console.log(opt.effect);

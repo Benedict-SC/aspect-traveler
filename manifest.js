@@ -12,6 +12,7 @@ var manifest = [
     {id:"LIGHT",src:"assets/img/ui/mote_light.png"},
     {id:"EARTH",src:"assets/img/ui/mote_earth.png"},
     {id:"AIR",src:"assets/img/ui/mote_air.png"},
+    {id:"darkness",src:"assets/img/ui/blackout.png"},
     {id:"port-angry",src:"assets/img/ports/angry.png"},
     {id:"port-annoyed",src:"assets/img/ports/annoyed.png"},
     {id:"port-ehehe",src:"assets/img/ports/ehehe.png"},

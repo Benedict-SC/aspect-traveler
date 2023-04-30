@@ -1,5 +1,6 @@
 var bgm;
 var userBgmVolumePref = 1;
+var userMasterVolumePref = 1;
 function initSounds(){
     createjs.Sound.initializeDefaultPlugins();
     createjs.Sound.alternateExtensions = ["mp3"];
@@ -34,5 +35,6 @@ function setBgmVolume(vol){
     bgm.volume = userBgmVolumePref;
 }
 function setMasterVolume(vol){
-    createjs.Sound.volume = vol;
+    userMasterVolumePref = vol;
+    createjs.Sound.volume = userMasterVolumePref;
 }
