@@ -85,7 +85,7 @@ function buildGame(){
     }
 
     g.options = [];
-    g.encid = "e01";
+    g.encid = "test";
     loadEventFrame(g.encid);
     createjs.Ticker.on("tick", tick);
 }
@@ -99,12 +99,12 @@ function loadEventFrame(encid, idx = 0){
         g.frameContainer = new createjs.Container();
     
         let options = frame.options;
-        g.encounterText = new createjs.BitmapText(insertNewlines(frame.text,520),fontsheet);//createjs.Text(first.text,"13px Arial","#FFFFFF");
+        g.encounterText = new createjs.BitmapText(insertNewlines(frame.text,528),fontsheet);//createjs.Text(first.text,"13px Arial","#FFFFFF");
         //g.encounterText.lineWidth = 520;
         g.encounterText.lineHeight = 19;
-        g.encounterText.x = 140;
+        g.encounterText.x = 136;
         g.encounterText.y = 261;
-        g.encTextShadow = new createjs.BitmapText(insertNewlines(frame.text,520),shadowsheet);
+        g.encTextShadow = new createjs.BitmapText(insertNewlines(frame.text,528),shadowsheet);
         g.encTextShadow.lineHeight = 19;
         g.encTextShadow.x = g.encounterText.x + 1
         g.encTextShadow.y = g.encounterText.y + 1

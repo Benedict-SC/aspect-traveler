@@ -33,7 +33,7 @@ encounters[id] = {
         {
             id:"BOND",
             image:"normal",
-            text:"\"It makes me think of… two children, keeping their parent company. Two guardians, protecting their charge.\"\n\nShe shakes her head. \"That's probably not it, is it?\"\n\nShe looks happy you asked, though. (+1 @)",
+            text:"\"It makes me think of... two children, keeping their parent company. Two guardians, protecting their charge.\"\n\nShe shakes her head. \"That's probably not it, is it?\"\n\nShe looks happy you asked, though. (+1 @)",
             options:[
                 {text: "Continue",effect:"end"}
             ]

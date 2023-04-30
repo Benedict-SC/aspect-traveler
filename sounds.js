@@ -12,9 +12,7 @@ function initSounds(){
 
     createjs.Sound.registerSound("assets/audio/bgm.mp3", "bgm");
     let loadHandler = function(event){
-        console.log("firing load for id "+ event.id);
         if(event.id == "bgm"){
-            console.log("wait no it's not");
             bgm = createjs.Sound.play("bgm",{volume:0.1,loop:-1});
             bgmFadeFunc = function(event){
                 let maxVol = userBgmVolumePref;
