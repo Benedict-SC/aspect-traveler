@@ -12,16 +12,16 @@ encounters[id] = {
             image:"changed",
             text:"Choices. Some might not work.",
             options:[
-                {text: "deplete cold",effect:"delta",cold:-1,frameIdx:0},
-                {text: "increase cold",effect:"delta",cold:1,frameIdx:0},
-                {text: "only with 0 cold",condition:"moteMaximum",conditionMote:"COLD",conditionValue:0,effect:"none",frameIdx:1},
-                {text: "only with 8 cold",condition:"moteMinimum",conditionMote:"COLD",conditionValue:8,effect:"none",frameIdx:1},
+                {text: "deplete #",effect:"delta",cold:-1,frameIdx:0},
+                {text: "increase #",effect:"delta",cold:1,frameIdx:0},
+                {text: "only with 0 #",condition:"moteMaximum",conditionMote:"COLD",conditionValue:0,effect:"none",frameIdx:1},
+                {text: "only with 8 #",condition:"moteMinimum",conditionMote:"COLD",conditionValue:8,effect:"none",frameIdx:1},
                 {text: "do something random",effect:"none",idPool:["red","blue","green","yellow"]}
             ]
         },
         {
             image:"normal",
-            text:"You had the right amount of cold to get here.",
+            text:"You had the right amount of # to get here.",
             options:[
                 {text: "Continue",effect:"end"}
             ]

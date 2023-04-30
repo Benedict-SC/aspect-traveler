@@ -8,10 +8,19 @@
 		<script src="assets/jsdata/event-flickering-ember.js"></script>
 		<script src="assets/jsdata/event-abandoned-shelter.js"></script>
 		<script src="assets/jsdata/event-parhelion-sign.js"></script>
+        <script src="manifest.js"></script>
+        <script src="sounds.js"></script>
+        <script src="motes.js"></script>
+        <script src="choices.js"></script>
         <script src="game.js"></script>
     </head>
     <body onload="initializeGame();">
-        <canvas id="maincanv" width="900" height="480"></canvas><br/> 
+        <div id="startmenu" style="background-color:azure;max-width:900;min-width:900;max-height:480;min-height:480">
+            <div id="loadmessage">Loading...</div>
+            <button hidden onclick="startGame()" id="startbutton" 
+            style="margin-left:400px;margin-right:400px;margin-top:180px;font-size:20px;background-color:#225599;color:white;padding:30px;">Start Game</button>
+        </div>
+        <canvas hidden id="maincanv" width="900" height="480"></canvas><br/> 
         <button onclick="loadEventFrame('ev-01',0);">load frozen travelers event</button><br/>
         <button onclick="loadEventFrame('test',0);">load test event</button><br/>
         <button onclick="loadEventFrame(document.getElementById('idinput').value,0);">load custom event</button> <input type="text" id="idinput"/><br/>
