@@ -116,9 +116,9 @@ function loadEventFrame(encid, idx = 0){
     let enc = encounters[encid];
     let first = enc.frames[idx];
     let options = first.options;
-    g.encounterText = new createjs.Text(first.text,"13px Arial","#FFFFFF");
-    g.encounterText.lineWidth = 520;
-    g.encounterText.lineHeight = 21;
+    g.encounterText = new createjs.BitmapText(insertNewlines(first.text,520),fontsheet);//createjs.Text(first.text,"13px Arial","#FFFFFF");
+    //g.encounterText.lineWidth = 520;
+    g.encounterText.lineHeight = 19;
     g.encounterImg = new createjs.Bitmap(assets[enc.id + first.image]);
     g.encounterImg.x = 140;
     g.encounterImg.y = 110;
@@ -223,4 +223,24 @@ function onFilesComplete(event){
 }
 function loadTestEvent(){
     loadEventFrame("e02",0);
+}
+function insertNewlines(textstring,width){
+    let tokens = textstring.split(" ");
+    let lines = [];
+    let currentLine = ""
+    while(tokens.length > 0){
+        nextToken = tokens.slice(0,1)[0];
+        tokens = tokens.slice(1);
+        let newline = currentLine + (currentLine.length == 0 ? "" : " ") + nextToken;
+        let testText = new createjs.BitmapText(newline,fontsheet);
+        let newlength = testText.getBounds().width;
+        if(newlength > width){
+            lines.push(currentLine);
+            currentLine = "" + nextToken;
+        }else{
+            currentLine = newline;
+        }
+    }
+    lines.push(currentLine);
+    return lines.join("\n");
 }
