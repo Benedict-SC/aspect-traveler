@@ -193,4 +193,10 @@ let sheet = {
     frames:frames,
     animations:anims
 }
+let shadow = {
+    images:["assets/img/ui/thickshadow.png"],
+    frames:frames,
+    animations:anims
+}
 var fontsheet = new createjs.SpriteSheet(sheet);
+var shadowsheet = new createjs.SpriteSheet(shadow);
