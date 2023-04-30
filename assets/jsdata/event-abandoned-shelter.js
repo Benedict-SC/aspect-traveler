@@ -2,7 +2,7 @@ var id = "ev-03";
 var encounters = encounters || {}
 encounters[id] = {
     id:id,
-    desc:"A chance encounter...",
+    desc:"Abandoned Shelter",
     images:{
         "normal":"assets/img/mockup/tents.png"
     },
@@ -62,7 +62,7 @@ encounters[id] = {
         },
         {
             image:"normal",
-            text:"You're too busy unpacking at the campsite to humor the star's questions. She pouts a bit, but eventually gets distracted and wanders off to stare cross-eyed at a tentpole. You're happy enough to let her do that, you suppose.\n\n(+1 $, -1 }.)",
+            text:"We've got enough that we can afford to spare some for those who come by in the future,” you explain to the star as you add some of your own surplus equipment to the cache.\n\nShe nods, and you continue onwards, making sure to leave the campsite clean before you go.\n\n(+1 $, -1 }.)",
             options:[
                 {text: "Continue",effect:"end"}
             ]

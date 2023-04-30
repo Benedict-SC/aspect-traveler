@@ -95,6 +95,14 @@ function getMoteById(moteid){
     }
     return null;
 }
+function getHighestMote(){
+    let highest = 0;
+    for(let i = 1; i < g.motes.length; i++){
+        if(g.motes[i].count > g.motes[highest].count)
+            highest = i;
+    }
+    return g.motes[highest];
+}
 function updateMoteCount(idx,delta){
     let mote = g.motes[idx];
     mote.count += delta;
@@ -170,6 +178,7 @@ function setOptions(options){
         //add button logic
         if(eventValid){
             optObj.addEventListener("click",function(event){
+                let highestMoteAtStart = getHighestMote();
                 if(opt.effect == "delta"){
                     if(opt.bond){ updateMoteCount(0,opt.bond);}
                     if(opt.heat){ updateMoteCount(1,opt.heat);}
@@ -198,6 +207,13 @@ function setOptions(options){
                     let randomId = opt.idPool[randomIndex];
                     for(let j = 0; j < enc.frames.length; j++){
                         if(enc.frames[j].id == randomId){
+                            loadEventFrame(g.encid,j);
+                            break;
+                        }
+                    }
+                }else if(opt.highestStatBranch){
+                    for(let j = 0; j < enc.frames.length; j++){
+                        if(enc.frames[j].id == highestMoteAtStart.id){
                             loadEventFrame(g.encid,j);
                             break;
                         }
