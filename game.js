@@ -2,13 +2,25 @@ var encounters = encounters || {}
 var stage;
 var assets = {};
 var g = {};
+var holds = [];
+function inputPaused(){
+    return holds.length > 0;
+}
+function freeHold(referent){
+    //console.log("hold removed: %o",referent);
+    holds = holds.filter(x => x != referent);
+}
+function holdInput(referent){
+    holds.push(referent);
+    //console.log("hold added: %o",referent);
+}
 
 //create default manifest
 var manifest = [
     {id:"bg",src:"assets/img/ui/mtnbg.png"},
     {id:"overlay",src:"assets/img/ui/frame.png"},
+    {id:"charshadow",src:"assets/img/ui/frame_shadow.png"},
     {id:"seed",src:"assets/img/ui/seed_base.png"},
-    {id:"char",src:"assets/img/mockup/char.png"},
     {id:"moteslot",src:"assets/img/ui/mote_sidebar.png"},
     {id:"motedot",src:"assets/img/ui/mote_dot.png"},
     {id:"BOND",src:"assets/img/ui/mote_bond.png"},
@@ -16,7 +28,20 @@ var manifest = [
     {id:"COLD",src:"assets/img/ui/mote_cold.png"},
     {id:"LIGHT",src:"assets/img/ui/mote_light.png"},
     {id:"EARTH",src:"assets/img/ui/mote_earth.png"},
-    {id:"AIR",src:"assets/img/ui/mote_air.png"}
+    {id:"AIR",src:"assets/img/ui/mote_air.png"},
+    {id:"port-angry",src:"assets/img/ports/angry.png"},
+    {id:"port-annoyed",src:"assets/img/ports/annoyed.png"},
+    {id:"port-ehehe",src:"assets/img/ports/ehehe.png"},
+    {id:"port-fear",src:"assets/img/ports/fear.png"},
+    {id:"port-gleeful",src:"assets/img/ports/gleeful.png"},
+    {id:"port-gleeful2",src:"assets/img/ports/gleeful_2.png"},
+    {id:"port-halo",src:"assets/img/ports/halo.png"},
+    {id:"port-hee",src:"assets/img/ports/hee.png"},
+    {id:"port-neutral",src:"assets/img/ports/neutral.png"},
+    {id:"port-sad",src:"assets/img/ports/sad.png"},
+    {id:"port-stoic",src:"assets/img/ports/stoic.png"},
+    {id:"port-ugh",src:"assets/img/ports/ugh.png"},
+    {id:"port-verysad",src:"assets/img/ports/verysad.png"}
 ]
 //populate manifest from encounter data
 for(let i = 0; i < encounters.ids.length; i++){
@@ -45,12 +70,16 @@ function tryInit(){
     g.seed = new createjs.Bitmap(assets.seed);
     g.seed.x = 27;
     g.seed.y = 4;
-    g.char = new createjs.Bitmap(assets.char);
-    g.char.x = 685;
-    g.char.y = 222;
+    g.char = new createjs.Bitmap(assets["port-halo"]);
+    g.char.x = 548;
+    g.char.y = 91;
+    g.charshadow = new createjs.Bitmap(assets.charshadow);
+    g.charshadow.x = 0;
+    g.charshadow.y = 0;
     stage.addChild(g.bg);
-    stage.addChild(g.char);
+    stage.addChild(g.charshadow);
     stage.addChild(g.overlay);
+    stage.addChild(g.char);
     stage.addChild(g.seed);
 
     g.motes = [
@@ -86,7 +115,7 @@ function tryInit(){
     g.options = [];
     g.encid = "e01";
     loadEventFrame(g.encid);
-    stage.update();
+    createjs.Ticker.on("tick", tick);
 }
 function getMoteById(moteid){
     for(let i = 0; i < g.motes.length; i++){
@@ -95,50 +124,137 @@ function getMoteById(moteid){
     }
     return null;
 }
+function getHighestMote(){
+    let highest = 0;
+    for(let i = 1; i < g.motes.length; i++){
+        if(g.motes[i].count > g.motes[highest].count)
+            highest = i;
+    }
+    return g.motes[highest];
+}
 function updateMoteCount(idx,delta){
     let mote = g.motes[idx];
+    let startCount = mote.count;
     mote.count += delta;
     if(mote.count < 0) mote.count = 0;
     let dotBox = mote.container.getChildByName("dots");
     dotBox.removeAllChildren();
-    for(let i = 0; i < mote.count; i++){
+    for(let  i = 0; i < startCount; i++){
         let dot = new createjs.Bitmap(assets.motedot);
         dot.x = i*6;
         dot.y = (i%2 == 1 ? 8 : 0);
+        if(delta < 0){ //if some are disappearing 
+            if(i >= mote.count){ //and you're one of the ones disappearing
+                //shrink out of existence
+                holdInput(dot);
+                dot.homeX = dot.x;
+                dot.homeY = dot.y;
+                dot.addEventListener("tick",function(){
+                    dot.scale = dot.scale - 0.1;
+                    let offset = 6 - (6*dot.scale);
+                    dot.x = dot.homeX + offset;
+                    dot.y = dot.homeY + offset;
+                    if(dot.scale <= 0){
+                        freeHold(dot);
+                        dot.removeAllEventListeners();
+                        dotBox.removeChild(dot);
+                    }
+                });
+            }
+        }
         dotBox.addChild(dot);
     }
-    stage.update();
+    if(delta > 0){
+        let i = startCount;
+        while(i < mote.count){
+            let dot = new createjs.Bitmap(assets.motedot);
+            dot.homeX = i*6;
+            dot.x = dot.homeX + 60;
+            dot.y = (i%2 == 1 ? 8 : 0);
+            dot.alpha = 0;
+            holdInput(dot);
+            dot.addEventListener("tick",function(event){
+                let pps = 300;
+                let aps = 5;
+                let secs = event.delta/1000;
+                let pixels = Math.floor(pps*secs);
+                let alphadelta = aps * secs;
+                dot.x -= pixels;
+                dot.alpha += alphadelta;
+                if(dot.x <= dot.homeX){
+                    freeHold(dot);
+                    dot.x = dot.homeX;
+                    dot.alpha = 1;
+                    dot.removeAllEventListeners();
+                }
+            });
+            dotBox.addChild(dot);
+            i++;
+        }
+    }
 }
 function loadEventFrame(encid, idx = 0){
-    unloadEventFrame();
-    if(encid == null) return;
-    g.encid = encid;
-    let enc = encounters[encid];
-    let first = enc.frames[idx];
-    let options = first.options;
-    g.encounterText = new createjs.Text(first.text,"13px Arial","#FFFFFF");
-    g.encounterText.lineWidth = 520;
-    g.encounterText.lineHeight = 21;
-    g.encounterImg = new createjs.Bitmap(assets[enc.id + first.image]);
-    g.encounterImg.x = 140;
-    g.encounterImg.y = 110;
-    g.encounterText.x = 140;
-    g.encounterText.y = 261;
-    stage.addChild(g.encounterImg);
-    stage.addChild(g.encounterText);
-    console.log("we're setting options again right");
-    setOptions(options);
-    stage.update();
+    unloadEventFrame(function(){
+        if(encid == null) return;
+        g.encid = encid;
+        let enc = encounters[encid];
+        let frame = enc.frames[idx];
+    
+        g.frameContainer = new createjs.Container();
+    
+        let options = frame.options;
+        g.encounterText = new createjs.BitmapText(insertNewlines(frame.text,520),fontsheet);//createjs.Text(first.text,"13px Arial","#FFFFFF");
+        //g.encounterText.lineWidth = 520;
+        g.encounterText.lineHeight = 19;
+        g.encounterText.x = 140;
+        g.encounterText.y = 261;
+        g.encTextShadow = new createjs.BitmapText(insertNewlines(frame.text,520),shadowsheet);
+        g.encTextShadow.lineHeight = 19;
+        g.encTextShadow.x = g.encounterText.x + 1
+        g.encTextShadow.y = g.encounterText.y + 1
+        g.encounterImg = new createjs.Bitmap(assets[enc.id + frame.image]);
+        g.encounterImg.x = 140;
+        g.encounterImg.y = 110;
+        g.frameContainer.addChild(g.encTextShadow);
+        g.frameContainer.addChild(g.encounterImg);
+        g.frameContainer.addChild(g.encounterText);
+        setOptions(options,g.frameContainer);
+        stage.addChild(g.frameContainer);
+        g.frameContainer.alpha = 0;
+        holdInput(g.frameContainer);
+        g.animFunc = function(event){
+            let secs = event.delta/1000;
+            let aps = 4;
+            g.frameContainer.alpha += aps*secs;
+            if(g.frameContainer.alpha >= 1){
+                g.frameContainer.alpha = 1;
+                g.frameContainer.removeEventListener("tick",g.animFunc);
+                freeHold(g.frameContainer);
+            }
+        };
+        g.frameContainer.addEventListener("tick",g.animFunc);
+    }); 
 }
-function unloadEventFrame(){
-    stage.removeChild(g.encounterImg);
-    stage.removeChild(g.encounterText);
-    for(let i = 0; i < g.options.length; i++){
-        stage.removeChild(g.options[i]);
+function unloadEventFrame(whenDone){
+    if(!(g.frameContainer)){ 
+        whenDone();
+        return;
     }
-    stage.update();
+    holdInput(g.frameContainer);
+    g.frameContainer.addEventListener("tick",function(event){
+        let secs = event.delta/1000;
+        let aps = 4;
+        g.frameContainer.alpha -= aps*secs;
+        if(g.frameContainer.alpha <= 0){
+            g.frameContainer.alpha = 0;
+            freeHold(g.frameContainer);
+            stage.removeChild(g.frameContainer);
+            g.frameContainer = null;
+            if(whenDone){whenDone();}
+        }
+    });
 }
-function setOptions(options){
+function setOptions(options,container){
     let enc = encounters[g.encid];
     g.options = [];
     for(let i = 0; i < options.length; i++){
@@ -152,7 +268,6 @@ function setOptions(options){
             }else if(opt.condition == "moteMinimum"){
                 let mote = getMoteById(opt.conditionMote);
                 eventValid = mote.count >= opt.conditionValue;
-                console.log("min event is valid: " + eventValid);
             }
         }
         let textColor = eventValid ? "#FFFFFF" : "#AAAAAA";
@@ -171,49 +286,60 @@ function setOptions(options){
         optObj.y = 115 + (i*40);
         //add button logic
         if(eventValid){
-            optObj.addEventListener("click",function(event){
-                if(opt.effect == "delta"){
-                    if(opt.bond){ updateMoteCount(0,opt.bond);}
-                    if(opt.heat){ updateMoteCount(1,opt.heat);}
-                    if(opt.cold){ updateMoteCount(2,opt.cold);}
-                    if(opt.light){ updateMoteCount(3,opt.light);}
-                    if(opt.earth){ updateMoteCount(4,opt.earth);}
-                    if(opt.air){ updateMoteCount(5,opt.air);}
-                }else if(opt.effect == "end"){
-                    unloadEventFrame();
-                    g.encid = null;
-                }else{
-                    console.log(opt.effect);
-                }
-
-                if(opt.frameIdx || opt.frameIdx === 0){
-                    console.log("are we doing this right");
-                    loadEventFrame(g.encid,opt.frameIdx);
-                }else if(opt.frameId){
-                    for(let j = 0; j < enc.frames.length; j++){
-                        if(enc.frames[j].id == opt.frameId){
-                            loadEventFrame(g.encid,j);
-                            break;
-                        }
-                    }
-                }else if(opt.idPool){
-                    let randomIndex = Math.floor(Math.random() * opt.idPool.length);
-                    let randomId = opt.idPool[randomIndex];
-                    for(let j = 0; j < enc.frames.length; j++){
-                        if(enc.frames[j].id == randomId){
-                            loadEventFrame(g.encid,j);
-                            break;
-                        }
-                    }
-                }
-                stage.update();
-            })
+            setOptionBehavior(opt,optObj,enc);
         }
 
         g.options.push(optObj);
-        stage.addChild(optObj);
+        container.addChild(optObj);
     }
-    stage.update();
+}
+function setOptionBehavior(opt,optObj,enc){
+    optObj.addEventListener("click",function(event){
+        if(inputPaused()){
+            return;
+        }
+        let highestMoteAtStart = getHighestMote();
+        if(opt.effect == "delta"){
+            if(opt.bond){ updateMoteCount(0,opt.bond);}
+            if(opt.heat){ updateMoteCount(1,opt.heat);}
+            if(opt.cold){ updateMoteCount(2,opt.cold);}
+            if(opt.light){ updateMoteCount(3,opt.light);}
+            if(opt.earth){ updateMoteCount(4,opt.earth);}
+            if(opt.air){ updateMoteCount(5,opt.air);}
+        }else if(opt.effect == "end"){
+            unloadEventFrame();
+            g.encid = null;
+        }else{
+            console.log(opt.effect);
+        }
+
+        if(opt.frameIdx || opt.frameIdx === 0){
+            loadEventFrame(g.encid,opt.frameIdx);
+        }else if(opt.frameId){
+            for(let j = 0; j < enc.frames.length; j++){
+                if(enc.frames[j].id == opt.frameId){
+                    loadEventFrame(g.encid,j);
+                    break;
+                }
+            }
+        }else if(opt.idPool){
+            let randomIndex = Math.floor(Math.random() * opt.idPool.length);
+            let randomId = opt.idPool[randomIndex];
+            for(let j = 0; j < enc.frames.length; j++){
+                if(enc.frames[j].id == randomId){
+                    loadEventFrame(g.encid,j);
+                    break;
+                }
+            }
+        }else if(opt.highestStatBranch){
+            for(let j = 0; j < enc.frames.length; j++){
+                if(enc.frames[j].id == highestMoteAtStart.id){
+                    loadEventFrame(g.encid,j);
+                    break;
+                }
+            }
+        }
+    })
 }
 function onFileLoad(event){
     assets[event.item.id] = event.result;
@@ -224,3 +350,29 @@ function onFilesComplete(event){
 function loadTestEvent(){
     loadEventFrame("e02",0);
 }
+function showHolds(){
+    console.log(holds);
+}
+function insertNewlines(textstring,width){
+    let tokens = textstring.split(" ");
+    let lines = [];
+    let currentLine = ""
+    while(tokens.length > 0){
+        nextToken = tokens.slice(0,1)[0];
+        tokens = tokens.slice(1);
+        let newline = currentLine + (currentLine.length == 0 ? "" : " ") + nextToken;
+        let testText = new createjs.BitmapText(newline,fontsheet);
+        let newlength = testText.getBounds().width;
+        if(newlength > width){
+            lines.push(currentLine);
+            currentLine = "" + nextToken;
+        }else{
+            currentLine = newline;
+        }
+    }
+    lines.push(currentLine);
+    return lines.join("\n");
+}
+createjs.Ticker.framerate = 60;
+function tick(event) { stage.update(event); }
+//createjs.Ticker.on("tick",stage.update());
