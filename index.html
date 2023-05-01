@@ -38,10 +38,12 @@
         <script src="game.js"></script>
     </head>
     <body onload="initializeGame();">
-        <div id="startmenu" style="background-color:azure;max-width:900;min-width:900;max-height:480;min-height:480;border:2px solid black;">
+        <div id="startmenu" style="background-image:url('assets/img/titledrawing.png');max-width:900;min-width:900;max-height:480;min-height:480;border:2px solid black;">
             <div id="loadmessage">Loading...</div>
             <button hidden onclick="startGame()" id="startbutton" 
-            style="margin-left:400px;margin-right:400px;margin-top:180px;font-size:20px;background-color:#225599;color:white;padding:30px;">Start Game</button>
+            style="margin-left:650px;margin-top:190px;border-radius:20px;font-size:30px;background-color:black;color:white;padding:30px;font-family:Georgia, 'Times New Roman', Times, serif;box-shadow: 0px 2px 20px 10px #fff;">Start Game</button>
+            <div style="color:white;font-size:15px;font-family:Georgia, 'Times New Roman', Times, serif;margin-top:94px;padding:10px;">Note: we couldn't get audio working over CORS in CreateJS in the LD site embed. This version has no audio! But if you download the game and play it locally, the audio should work fine. Go figure!<br/>
+            If you'd rather use this embedded version anyway, <a style="color:white;" href='https://www.youtube.com/watch?v=f-9Sk7EHtb0'>here's the BGM on YouTube for you to loop.</a> (You won't get sound effects, though.)</div>
         </div>
         <canvas hidden id="maincanv" width="900" height="480" style="border:2px solid black;"></canvas><br/> 
         <button onclick="loadEventFrame('test',0);">load test event</button><br/>
