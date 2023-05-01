@@ -16,7 +16,7 @@ function holdInput(referent){
 }
 
 function initializeGame(){
-    var loadQueue = new createjs.LoadQueue(false);
+    var loadQueue = new createjs.LoadQueue(false,null,"Anonymous");
     loadQueue.on("fileload",onFileLoad,this);
     loadQueue.on("complete",onFilesComplete,this);
     loadQueue.loadManifest(manifest);
@@ -33,6 +33,7 @@ function startGame(){
 }
 function buildGame(){
     stage = new createjs.Stage("maincanv");
+    stage.enableMouseOver();
     g.bg = new createjs.Bitmap(assets.bg);
     g.bg.x = 0;
     g.bg.y = 0;
@@ -42,9 +43,13 @@ function buildGame(){
     g.overlay = new createjs.Bitmap(assets.overlay);
     g.overlay.x = 0;
     g.overlay.y = 0;
-    g.seed = new createjs.Bitmap(assets.seed);
-    g.seed.x = 27;
-    g.seed.y = 4;
+    buildSeed();
+    g.imbue = new createjs.Container();
+    let imbueui = new createjs.Bitmap(assets["imbueui"]);
+    g.imbue.addChild(imbueui);
+    g.imbue.x = -1800;
+    g.imbue.y = -960;
+    g.imbueSummonState = -1;
     g.char = new createjs.Bitmap(assets["port-halo"]);
     g.char.x = 548;
     g.char.y = 91;
@@ -57,14 +62,23 @@ function buildGame(){
     stage.addChild(g.overlay);
     stage.addChild(g.char);
     stage.addChild(g.seed);
+    stage.addChild(g.imbue);
+
+    g.openingFlags = {
+        whatwhy:true,
+        save:true,
+        brought:true,
+        knowing:true,
+        decide:false
+    }
 
     g.motes = [
-        {id:"BOND",count: 1 + Math.floor(Math.random() * 9)},
-        {id:"HEAT",count: Math.floor(Math.random() * 10)},
-        {id:"COLD",count: Math.floor(Math.random() * 10)},
-        {id:"LIGHT",count: Math.floor(Math.random() * 10)},
-        {id:"EARTH",count: Math.floor(Math.random() * 10)},
-        {id:"AIR",count: Math.floor(Math.random() * 10)}
+        {id:"BOND",count: 1},
+        {id:"HEAT",count: 1},
+        {id:"COLD",count: 1},
+        {id:"LIGHT",count: 1},
+        {id:"EARTH",count: 1},
+        {id:"AIR",count: 1}
     ]
     for(let i = 0; i < g.motes.length; i++){
         let moteContainer = new createjs.Container();
@@ -193,6 +207,8 @@ function insertNewlines(textstring,width){
     return lines.join("\n");
 }
 function getDarker(){
+    stage.setChildIndex( g.darkness, stage.getNumChildren()-1);
+    stage.setChildIndex( g.frameContainer, stage.getNumChildren()-1);
     g.darkPercent += 0.15;
     if(g.darkPercent > 1) g.darkPercent = 1;
     g.darkness.alpha = g.darkPercent;
@@ -220,6 +236,72 @@ function shiftBg(){
         }
     }
     createjs.Ticker.addEventListener("tick",shiftfunc);
+}
+function buildSeed(){
+    g.seed = new createjs.Container();
+    let seedImg = new createjs.Bitmap(assets.seed);
+    g.seed.addChild(seedImg);
+    let seedShape = new createjs.Shape();
+    seedShape.graphics.beginFill("#0000FF").drawRect(0,0,seedImg.image.width,seedImg.image.height);
+    seedShape.alpha = 0.01;
+    g.seed.addChild(seedShape);
+    g.seed.x = 20;
+    g.seed.y = -2;
+    seedShape.addEventListener("mouseover",function(event){
+        seedImg.image = assets.seedglow;
+    });
+    seedShape.addEventListener("mouseout",function(event){
+        seedImg.image = assets.seed;
+    });
+    seedShape.addEventListener("click",function(event){
+        if(g.imbueSummonState == -1){
+            summonImbue();
+        }else if(g.imbueSummonState == 1){
+            dismissImbue();
+        }
+    })
+}
+function summonImbue(){
+    g.imbueSummonState = 0;
+    stage.setChildIndex( g.imbue, stage.getNumChildren()-1);
+    stage.setChildIndex( g.seed, stage.getNumChildren()-1);
+    let progress = {val:0};
+    holdInput(g.imbue);
+    let summon = function(event){
+        let secs = event.delta/1000;
+        progress.val += 2*secs;
+        let percentMoved = Math.sin((progress.val * Math.PI) / 2);
+        g.imbue.x = -1800 + Math.floor(percentMoved * 1800);
+        g.imbue.y = -960 + Math.floor(percentMoved * 960);
+        if(progress.val > 1){
+            g.imbueSummonState = 1;
+            g.imbue.x = 0;
+            g.imbue.y = 0;
+            createjs.Ticker.removeEventListener("tick",summon);
+        }
+    }
+    createjs.Ticker.addEventListener("tick",summon);
+}
+function dismissImbue(){
+    g.imbueSummonState = 0;
+    stage.setChildIndex( g.imbue, stage.getNumChildren()-1);
+    stage.setChildIndex( g.seed, stage.getNumChildren()-1);
+    let progress = {val:0};
+    let summon = function(event){
+        let secs = event.delta/1000;
+        progress.val += 2*secs;
+        let percentMoved = 1 - Math.cos((progress.val * Math.PI) / 2);
+        g.imbue.x = Math.floor(percentMoved * -1800);
+        g.imbue.y = Math.floor(percentMoved * -960);
+        if(progress.val > 1){
+            g.imbueSummonState = -1;
+            g.imbue.x = -1800;
+            g.imbue.y = -960;
+            freeHold(g.imbue);
+            createjs.Ticker.removeEventListener("tick",summon);
+        }
+    }
+    createjs.Ticker.addEventListener("tick",summon);
 }
 createjs.Ticker.framerate = 60;
 function tick(event) { stage.update(event); }

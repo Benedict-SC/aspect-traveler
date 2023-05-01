@@ -13,6 +13,8 @@ function setOptions(options,container){
             }else if(opt.condition == "moteMinimum"){
                 let mote = getMoteById(opt.conditionMote);
                 eventValid = mote.count >= opt.conditionValue;
+            }else if(opt.condition == "opening"){
+                eventValid = g.openingFlags[opt.flag];
             }
         }
         if(opt.hidden && !eventValid){
@@ -54,6 +56,12 @@ function setOptionBehavior(opt,optObj,enc){
         }
         if(opt.silence){
             getDarker();
+        }
+        if(opt.flag){
+            g.openingFlags[opt.flag] = false;//!g.openingFlags[opt.flag];
+            if(!(g.openingFlags["whatwhy"] || g.openingFlags["save"] || g.openingFlags["brought"] || g.openingFlags["knowing"])){
+                g.openingFlags.decide = true;
+            }
         }
         let highestMoteAtStart = getHighestMote();
         if(opt.effect == "delta"){

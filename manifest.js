@@ -4,6 +4,8 @@ var manifest = [
     {id:"overlay",src:"assets/img/ui/frame.png"},
     {id:"charshadow",src:"assets/img/ui/frame_shadow.png"},
     {id:"seed",src:"assets/img/ui/seed_base.png"},
+    {id:"seedglow",src:"assets/img/ui/seed_glow.png"},
+    {id:"imbueui",src:"assets/img/ui/imbueui.png"},
     {id:"moteslot",src:"assets/img/ui/mote_sidebar.png"},
     {id:"motedot",src:"assets/img/ui/mote_dot.png"},
     {id:"BOND",src:"assets/img/ui/mote_bond.png"},
