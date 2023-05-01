@@ -47,7 +47,21 @@ function trackKickoff(){
         movePointer(g.pointer.x,g.pointer.x+60,function(){performProgression(true)},true,false);
     });
 }
+function gameoverMoteId(){
+    for(let i = 0; i < g.motes.length; i++){
+        if(g.motes[i].count <= 0){
+            return g.motes[i].id;
+        }
+    }
+    return false;
+}
 function performProgression(nomove = false){
+    let gameover = gameoverMoteId();
+    if(gameover){
+        vanishPointer();
+        loadEventFrame("badend-" + gameover.toLowerCase(),0);
+        return;
+    }
     eventIndex++;
     console.log('event index is: ' + eventIndex);
     let bigger = eventIndex == 5 || eventIndex == 11;
@@ -62,6 +76,20 @@ function performProgression(nomove = false){
             loadEventFrame(randomEvent,0);
         },null,bigger);
     }
+}
+function vanishPointer(){
+    let mover = function(event){
+        let secs = event.delta/1000;
+        let totalTime = 0.8;
+        let progThisFrame = secs/totalTime;
+        g.pointer.y -= Math.floor(progThisFrame * 80);
+        g.pointer.alpha -= progThisFrame;
+        if(g.pointer.alpha <= 0){
+            g.pointer.alpha = 0;
+            createjs.Ticker.removeEventListener("tick",mover);
+        }
+    };
+    createjs.Ticker.addEventListener("tick",mover);
 }
 function movePointer(start,end,whendone,clipped,big){
     let trailwidth = 33;
