@@ -83,7 +83,7 @@ encounters[id] = {
             ]
         },
         {
-            id:"heal",
+            id:"heal2",
             image:"healed",
             text:"And now something has changed, and the wolf rises from under her ministrations, and lays one long lick down her face, before turning and heading away from your group. The two smaller wolves follow, too.\n\nYour star laughs. You do too. (+1 @.)",
             options:[

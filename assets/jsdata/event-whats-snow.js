@@ -20,7 +20,7 @@ encounters[id] = {
             options:[
                 {text: "Tell her about where snow comes from",effect:"none",frameId:"source"},
                 {text: "Tell her about what snow is made out of",effect:"none",frameId:"made"},
-                {text: "Tell her about what the snow means to you",effect:"none",frameId:"means"},
+                {text: "Tell her about what the snow means to you",effect:"delta",bond:1,frameId:"means"},
                 {text: "Tell her that snow can keep you warm",effect:"none",frameId:"warm"},
                 {text: "Tell her that snow can be dangerous",effect:"none",frameId:"cold"}
             ]

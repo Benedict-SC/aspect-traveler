@@ -9,7 +9,7 @@ function initSounds(){
     createjs.Sound.registerSound("assets/audio/mid-chime.mp3", "mid-chime");
     createjs.Sound.registerSound("assets/audio/sad-chime.mp3", "sad-chime");
     createjs.Sound.registerSound("assets/audio/button.mp3", "button");
-
+    createjs.Sound.registerSound("assets/audio/damage.mp3", "damage");
 
     createjs.Sound.registerSound("assets/audio/bgm.mp3", "bgm");
     let loadHandler = function(event){

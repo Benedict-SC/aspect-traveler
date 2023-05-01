@@ -67,7 +67,7 @@ encounters[id] = {
         {
             id:"shove3",
             image:"normal",
-            text:"Above you, you hear the sound of snow being scraped away from the outside. You converge on the sound yourself, until a hole in the darkness reveals the concerned expression of the star, who'd been digging away in the snow to extract you.\n\nNowhere is there a boulder to be seen. Just… a massive pile of snow, the size and shape of the boulder itself.",
+            text:"Above you, you hear the sound of snow being scraped away from the outside. You converge on the sound yourself, until a hole in the darkness reveals the concerned expression of the star, who'd been digging away in the snow to extract you.\n\nNowhere is there a boulder to be seen. Just... a massive pile of snow, the size and shape of the boulder itself.",
             options:[
                 {text: "...What?",effect:"none",frameId:"shove4"}
             ]
