@@ -34,7 +34,7 @@ encounters[id] = {
         {
             id:"HEAT",
             image:"normal",
-            text:"\"...It feels cold,\" she shivers. \"And, yeah, I know, it's always cold up here. It's not that. It's something else.\"\n\nMmm. (+1 @.)\n\nThey say, you say, that the aurora is a sign reserved only for lone travelers. It disdains the unworthy sight of the masses and the touch of the ground, and so it hides itself where only a few may see it. To one who travels alone, it is a blessing and an auspicious sign. But...",
+            text:"\"...It feels cold,\" she shivers. \"And, yeah, I know, it's always cold down here. It's not that. It's something else.\"\n\nMmm. (+1 @.)\n\nThey say, you say, that the aurora is a sign reserved only for lone travelers. It disdains the unworthy sight of the masses and the touch of the ground, and so it hides itself where only a few may see it. To one who travels alone, it is a blessing and an auspicious sign. But...",
             options:[
                 {text: "You pause, before adding...",effect:"none",frameId:"heat2"},
             ]
@@ -68,7 +68,7 @@ encounters[id] = {
         {
             id:"LIGHT",
             image:"normal",
-            text:"She stares at the aurora a bit more.\n\n\"Even God may become forgetful,\" she says eventually. \"And those thoughts and memories that wander out of God's mind may sometimes fall, from heaven to earth. And in being forgotten they become alone, and they grow cold in their solitude.\"\n\nThat's... implying a lot. There's no way, right?\n\nShe just smiles. (+1 @.)",
+            text:"She stares at the aurora a bit more.\n\n\"Even higher beings may become forgetful,\" she says eventually. \"And those thoughts and memories that wander out of the mind of such a being may sometimes fall, from heaven to earth. And in being forgotten they become alone, and they grow cold in their solitude.\"\n\nThat's... implying a lot. There's no way, right?\n\nShe just smiles. (+1 @.)",
             options:[
                 {text: "They say the aurora is a sign reserved for lone travelers. It disdains the-",effect:"none",frameId:"light2"},
             ]

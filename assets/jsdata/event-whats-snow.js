@@ -84,15 +84,15 @@ encounters[id] = {
         {
             id:"cold",
             image:"normal",
-            text:"Okay, if she doesn't know, she needs to know- snow can be extremely dangerous. It's the most critical thing she has to learn, if she truly has absolutely no understanding of the subject.\n\nSnow looks uniform on the outside, but anything could be underneath it. If you get buried in snow, which can happen from an avalanche or something, you lose the ability to breathe, and- you don't know if it's the case for stars, actually, but for us normal people if we can't breathe we die.\n\n...Does she know what dying is. Do you need to explain what dying means to a small star child.",
+            text:"Okay, if she doesn't know, she needs to know- snow can be extremely dangerous. It's the most critical thing she has to learn, if she truly has absolutely no understanding of the subject.\n\nSnow looks uniform on the outside, but anything could be underneath it. If you get buried in snow, which can happen from an avalanche or something, you lose the ability to breathe, and- you don't know if it's the case for stars, actually, but for us normal people if we can't breathe we die.\n\n",
             options:[
-                {text: "You really hope she doesn't ask.",effect:"delta",cold:1,frameId:"cold2"}
+                {text: "Continue.",effect:"delta",cold:1,frameId:"cold2"}
             ]
         },
         {
             id:"cold2",
             image:"normal",
-            text:"Thankfully, she doesn't ask.\n\n\"I wouldn't let myself get buried in snow,\" she says. \"I'd burn my way out.\" (+1 #.)\n\nThat's... that works, you guess?\n\nYou nevertheless spend a while making sure she knows how to free herself from the snow in case you ever get separated, before you drill in a more well-rounded understanding of the snow into her and move on.",
+            text:"\"...Dying is that thing that happened to my angel?\" she asks, and you nod.\n\n\"And if I get buried in the snow, that might happen to me, too? Then I won't let it,\" she says. \"If I ever get buried, I'll burn my way out.\" (+1 #.)\n\nThat's... that works, you guess?\n\nYou nevertheless spend a while making sure she knows how to free herself from the snow in case you ever get separated, before you drill in a more well-rounded understanding of the snow into her and move on.",
             options:[
                 {text: "Continue",effect:"end"}
             ]

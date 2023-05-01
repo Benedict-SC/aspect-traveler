@@ -11,35 +11,35 @@ encounters[id] = {
             image:"normal",
             text:"The two of you come across a pitched tent and what seems to be a supply cache. You check, and there's nobody present.\n\n\"What's this?\" the star asks.\n\nYou explain that it's a supply cache. Those who travel through the mountains often leave things like this behind on their travels.\n\n\"Oh,\" the star says. \"Why?\"\n\nWhy leave supplies behind? Well...",
             options: [
-                {text: "It's practical.",condition:"moteMinimum",conditionMote:"COLD",conditionValue:2,effect:"delta",heat:-2,cold:1,air:1,frameIdx:1},
-                {text: "It's the right thing to do.",condition:"moteMinimum",conditionMote:"HEAT",conditionValue:2,effect:"delta",cold:-2,heat:1,light:1,frameIdx:2},
-                {text: "Stay silent.",effect:"delta",bond:-1,frameIdx:3}
+                {text: "It's practical.",condition:"moteMinimum",conditionMote:"COLD",conditionValue:1,effect:"delta",heat:-1,cold:1,earth:1,frameIdx:1},
+                {text: "It's the right thing to do.",condition:"moteMinimum",conditionMote:"HEAT",conditionValue:1,effect:"delta",cold:-1,heat:1,light:1,frameIdx:2},
+                {text: "Stay silent.",effect:"none",frameIdx:3}
             ]
         },
         {
             image:"normal",
-            text:"You explain that supply depots provide a way to retreat in case of danger. If you carry all your supplies with your party, that's a single point of vulnerability, and if you lose everything then you're left with nothing. By leaving strategic caches, you give yourself a place to fall back to and restock at, even if some disaster befalls you. Leaving paths of retreat is important- it helps protect you, helps keep you safe.\n\n\"I see,\" the Star says contemplatively, before wandering off to examine a tentpole with excruciating focus.\n\n(-2 $, +1 #, +1 ~.)",
+		text:"You explain that supply depots provide a way to retreat in case of danger. If you carry all your supplies with your party, that's a single point of vulnerability, and if you lose everything then you're left with nothing. By leaving strategic caches, you give yourself a place to fall back to and restock at, even if some disaster befalls you. Leaving paths of retreat is important- it helps protect you, helps keep you safe.\n\n\"I see,\" the Star says contemplatively, before wandering off to examine a tentpole in excruciating detail while you work on unpacking.\n\n(-1 $, +1 #, +1 }.)",
             options:[
                 {text: "Continue",effect:"none",frameIdx:4}
             ]
         },
         {
             image:"normal",
-            text:"Because if there's one thing the mountain teaches us, it's that we're all in this together. The mountain is a hard place to survive, and if we don't work together and share what we have, we won't make it for long. That's where our strength comes from- and it's because of havens and depots like this that we'll be able to make it further up the mountain.\n\n\"I see!\" the Star says cheerfully, before wandering off to examine a tentpole with excruciating focus.\n\n(-2 #, +1 $, +1 {.)",
+            text:"Because if there's one thing the mountain teaches you, it's that you're all in this together. The mountain is a hard place to survive, and if you don't work together and share what you have, you won't make it for long. That's where your strength comes from- and it's because of havens and depots like this that you'll be able to make it further up the mountain.\n\n\"I see!\" the Star says cheerfully, before wandering off to examine a tentpole in excruciating detail while you work on unpacking.\n\n(-1 #, +1 $, +1 {.)",
             options:[
                 {text: "Continue",effect:"none",frameIdx:4}
             ]
         },
         {
             image:"normal",
-            text:"You're too busy unpacking at the campsite to humor the star's questions. She pouts a bit, but eventually gets distracted and wanders off to stare cross-eyed at a tentpole. You're happy enough to let her do that, you suppose.\n\n(-1 @.)",
+            text:"You're too busy unpacking at the campsite to humor the star's questions. She pouts a bit, but eventually gets distracted and wanders off to stare cross-eyed at a tentpole. You're happy enough to let her do that, you suppose.\n\n",
             options:[
                 {text: "Continue",effect:"none",frameIdx:4}
             ]
         },
         {
             image:"normal",
-            text:"What will you do here?",
+            text:"You've gotten yourself fully set up at this shelter. What will you do now?",
             options:[
                 {text: "Rest here",effect:"delta",bond:2,frameIdx:5},
                 {text: "Take from the cache",effect:"delta",cold:1,earth:1,frameIdx:6},

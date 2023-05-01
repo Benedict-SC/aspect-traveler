@@ -15,7 +15,7 @@ encounters[id] = {
                 {text: "Fight",effect:"random",subOpts:[{id:"win"},{id:"lose"}]},
                 {text: "Flee",effect:"delta",air:-1,frameId:"flee"},
                 {text: "Intimidate them",effect:"delta",cold:-2,frameId:"intimidate"},
-                {text: "Heal them",effect:"delta",light:-1,frameId:"heal"},
+                {text: "Heal them",condition:"moteMinimum",conditionMote:"LIGHT",conditionValue:1,effect:"delta",light:-1,frameId:"heal"},
             ]
         },
         {
