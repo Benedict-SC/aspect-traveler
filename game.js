@@ -113,8 +113,10 @@ function buildGame(){
     g.darkPercent = 0;
     stage.addChild(g.darkness);
 
+    initTrack();
+
     g.options = [];
-    g.encid = "test";
+    g.encid = "opening";
     loadEventFrame(g.encid);
     createjs.Ticker.on("tick", tick);
 }
@@ -283,6 +285,7 @@ function buildSeed(){
     })
 }
 function summonImbue(){
+    return; //not yet implemented
     g.imbueSummonState = 0;
     stage.setChildIndex( g.imbue, stage.getNumChildren()-1);
     stage.setChildIndex( g.seed, stage.getNumChildren()-1);

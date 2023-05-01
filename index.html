@@ -4,6 +4,7 @@
         <!--script src="https://code.createjs.com/1.0.0/createjs.min.js"></script-->
         <script src="fontmaker.js"></script>
         <script src="assets/jsdata/opening-cutscene.js"></script>
+        <script src="assets/jsdata/ending-cutscene.js"></script>
         <script src="assets/jsdata/encounter01.js"></script>
         <script src="assets/jsdata/enctest.js"></script>
         <script src="assets/jsdata/event-frozen-travelers.js"></script>
@@ -33,6 +34,7 @@
         <script src="sounds.js"></script>
         <script src="motes.js"></script>
         <script src="choices.js"></script>
+        <script src="progression.js"></script>
         <script src="game.js"></script>
     </head>
     <body onload="initializeGame();">
@@ -44,6 +46,7 @@
         <canvas hidden id="maincanv" width="900" height="480" style="border:2px solid black;"></canvas><br/> 
         <button onclick="loadEventFrame('test',0);">load test event</button><br/>
         <button onclick="loadEventFrame(document.getElementById('idinput').value,0);">load custom event</button> <input type="text" id="idinput"/><br/>
-        <button onclick="showHolds()">show animation holds</button>
+        <button onclick="debugMovePointer(true)">PROGRESS</button>
+        <button onclick="debugMovePointer(false)">progress</button>
     </body>
 </html>

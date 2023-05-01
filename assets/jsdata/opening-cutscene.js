@@ -231,7 +231,7 @@ encounters[id] = {
             image:"gone",
             text:"Apparently she is.\n\n\"The sky! Wow! What about that?\"\n\nThat's... the ground.\n\nThis line of inquiry continues for a while. She seems very very excited to learn these extremely basic concepts, and you do your best to bring her up to speed with the questions she's asking, about approximately everything.",
             options:[
-                {text: "This...",effect:"none",frameId:"reach4"}
+                {text: "This...",effect:"delta",bond:1,frameId:"reach4"}
             ]
         },
         {
@@ -255,7 +255,7 @@ encounters[id] = {
             image:"gone",
             text:"She's not going to be alone, you tell her through her tears. For as long as it takes to lead her to the summit, you'll be with her.\n\nOkay?\nOkay.\n\nLet's go. We'll get to the top of the mountain. We'll get you back in the sky, kid.\n\nEverything is going to work out.",
             options:[
-                {text: "Continue",effect:"end"}
+                {text: "Continue",effect:"openingEnd"}
             ]
         }
     ]

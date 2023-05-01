@@ -81,9 +81,15 @@ function setOptionBehavior(opt,optObj,enc){
             createjs.Sound.play("damage");
         }else if(opt.effect == "end"){
             createjs.Sound.play("button");
+            unloadEventFrame(performProgression);
+            changePortraits("neutral");
+            g.encid = null;
+        }else if(opt.effect == "openingEnd"){
+            createjs.Sound.play("button");
             unloadEventFrame();
             changePortraits("neutral");
             g.encid = null;
+            trackKickoff();
         }else if(opt.effect == "random"){
             let randomIndex = Math.floor(Math.random() * opt.subOpts.length);
             let randomId = opt.subOpts[randomIndex].id;
