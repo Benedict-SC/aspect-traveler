@@ -4,15 +4,15 @@ encounters[id] = {
     id:id,
     desc:"Scaling a cliff",
     images:{
-        "normal":"assets/img/mockup/cliff.png"
+        "normal":"assets/img/event/cliff.png"
     },
     frames:[
         {
             image:"normal",
             text:"The two of you come to a cliff, towering above you.\n\nLooks like the only way to continue on is to scale the cliff. That's going to involve setting up quite a bit of climbing equipment, slowly and carefully.\n\nThe star looks more interested in playing with the hardy lichen growing on the cliff, though.",
             options: [
-                {text: "Have her help you with the work",effect:"delta",earth:1,frameIdx:1},
-                {text: "Let her play",effect:"delta",air:1,frameIdx:2}
+                {text: "Have her help you with the work",effect:"delta",earth:1,frameIdx:1,port:"annoyed"},
+                {text: "Let her play",effect:"delta",air:1,frameIdx:2,port:"ehehe"}
             ]
         },
         {

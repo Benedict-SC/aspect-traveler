@@ -11,8 +11,8 @@ encounters[id] = {
             image:"normal",
             text:"You've come to a fork in the road that you're familiar with.\n\nOne path leads to a path you've never traveled before, but the map promises that it's a shortcut.\n\nThe other path is quite long, but you're familiar with its length and know what to expect from it.",
             options: [
-                {text: "Take the unfamiliar path.",effect:"random",subOpts:[{id:"fastbad",earth:-1},{id:"fastgood",air:1}]},
-                {text: "Take the reliable path.",effect:"random",subOpts:[{id:"slowbad",goblinTinkerer:true,air:-1},{id:"slowgood",earth:1}]}
+                {text: "Take the unfamiliar path.",effect:"random",subOpts:[{id:"fastbad",earth:-1},{id:"fastgood",air:1}],port:"confused"},
+                {text: "Take the reliable path.",effect:"random",subOpts:[{id:"slowbad",goblinTinkerer:true,air:-1},{id:"slowgood",earth:1}],port:"ugh"}
             ]
         },
         {

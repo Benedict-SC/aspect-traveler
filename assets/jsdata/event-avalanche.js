@@ -11,9 +11,9 @@ encounters[id] = {
             image:"normal",
             text:"As you pass under a cliff, you hear a sound from above.\n\nYou look up. A huge snow-covered boulder, easily thrice as thick as you are tall, is falling towards the two of you.\n\nYou only have a moment to react.",
             options: [
-                {text: "Dodge it!",effect:"delta",air:-1,frameId:"dodge"},
-                {text: "Warn her first!",effect:"delta",earth:-2,frameId:"warn"},
-                {text: "Shove her out of the way!",effect:"delta",bond:-2,frameId:"shove"}
+                {text: "Dodge it!",effect:"delta",air:-1,frameId:"dodge",port:"fear",resultPort:"gone"},
+                {text: "Warn her first!",effect:"delta",earth:-2,frameId:"warn",port:"confused",resultPort:"halo"},
+                {text: "Shove her out of the way!",effect:"delta",bond:-2,frameId:"shove",port:"fear"}
             ]
         },
         {
@@ -21,7 +21,7 @@ encounters[id] = {
             image:"normal",
             text:"With a desperate burst of speed, you push yourself out from under the rock's shadow just in time. (-1 ~.)\n\nWith a heavy thud, the rock lands, sending snow everywhere. Only after your escape do you think to look towards the star.",
             options:[
-                {text: "Did she make it?",effect:"delta",cold:1,frameId:"dodge2"},
+                {text: "Did she make it?",effect:"delta",cold:1,frameId:"dodge2",resultPort:"sad"},
             ]
         },
         {
@@ -53,7 +53,7 @@ encounters[id] = {
             image:"normal",
             text:"You shove the star out of the way, just in time.\n\nYou're not going to be able to avoid being crushed by the boulder, but at least you got the star out of the way. Maybe she'll be able to reach the top on her own. She's the one with the magic, after all.\n\nThe boulder hits you,\n-@@\nAnd everything disappears.",
             options:[
-                {text: "Game Over >",effect:"none",frameId:"shove2"}
+                {text: "Game Over >",effect:"none",frameId:"shove2",resultPort:"gone"}
             ]
         },
         {
@@ -85,7 +85,7 @@ encounters[id] = {
             image:"normal",
             text:"(And yet, something bothers you about that conclusion. You'd been so certain it was a boulder. This isn't the first time you've seen either stone or snow fall from high above, and you feel like you could definitely have distinguished the two.)\n\n(But you're alive. So you must have been mistaken, right?)",
             options:[
-                {text: "Right. Yeah.",effect:"delta",light:-2,bond:4,frameId:"shove6"}
+                {text: "Right. Yeah.",effect:"delta",light:-2,bond:4,frameId:"shove6",resultPort:"sad"}
             ]
         },
         {
@@ -93,7 +93,7 @@ encounters[id] = {
             image:"normal",
             text:"The star pulls you out of the mound of collapsed snow, and hugs you.\n\nYou tell her it's okay. You're fine. You're all right, see?\n\nBehind her head, you see the faintest signs of a dim halo of light, so dim you wonder if you're imagining it. As you stare, it fades away into nothing.\n\n(-2 {,+4 @)",
             options:[
-                {text: "Did you... do something?",effect:"none",frameId:"shove7"}
+                {text: "Did you... do something?",effect:"none",frameId:"shove7",resultPort:"ugh"}
             ]
         },
         {

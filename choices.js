@@ -51,7 +51,12 @@ function setOptions(options,container){
             setOptionBehavior(opt,buttonbg,enc);
         }
         if(opt.port){
-            buttonbg.addEventListener("mouseover",function(event){changePortraits(opt.port)});
+            buttonbg.addEventListener("mouseover",function(event){
+                if(inputPaused()){
+                    return;
+                }
+                changePortraits(opt.port)
+            });
         }
 
         g.options.push(optObj);

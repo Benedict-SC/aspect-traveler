@@ -19,7 +19,7 @@ encounters[id] = {
             image:"normal",
             text:"\"It is powerful, but also... conflicted?\" She seems hesitant. \"Half of it favors me. The other half disfavors me.\"\n\nWell. (+1 @.)\n\nThey say, you say, that the aurora is a sign reserved only for lone travelers. It disdains the unworthy sight of the masses and the touch of the ground, and so it hides itself where only a few may see it. To one who travels alone, it is a blessing and an auspicious sign. But...",
             options:[
-                {text: "You pause, before adding...",effect:"none",frameId:"bond2"},
+                {text: "You pause, before adding...",effect:"none",frameId:"bond2",port:"confused"},
             ]
         },
         {
@@ -27,8 +27,8 @@ encounters[id] = {
             image:"normal",
             text:"To those who travel together, the aurora is an omen of separation, the solitude-bringer.\n\n\"...It's going to try to separate us?\"\n\nShe looks very unhappy at the thought.\n\n\"I'm not going to let it, if that's what it wants. Even if it's calling out to me.\"",
             options:[
-                {text: "Go anyway.",effect:"delta",light:1,frameId:"go"},
-                {text: "Don't go.",effect:"delta",earth:1,frameId:"stay"}
+                {text: "Go anyway.",effect:"delta",light:1,frameId:"go",port:"stoic",resultPort:"halo"},
+                {text: "Don't go.",effect:"delta",earth:1,frameId:"stay",port:"gleeful"}
             ]
         },
         {
@@ -36,7 +36,7 @@ encounters[id] = {
             image:"normal",
             text:"\"...It feels cold,\" she shivers. \"And, yeah, I know, it's always cold down here. It's not that. It's something else.\"\n\nMmm. (+1 @.)\n\nThey say, you say, that the aurora is a sign reserved only for lone travelers. It disdains the unworthy sight of the masses and the touch of the ground, and so it hides itself where only a few may see it. To one who travels alone, it is a blessing and an auspicious sign. But...",
             options:[
-                {text: "You pause, before adding...",effect:"none",frameId:"heat2"},
+                {text: "You pause, before adding...",effect:"none",frameId:"heat2",port:"fear"},
             ]
         },
         {
@@ -44,8 +44,8 @@ encounters[id] = {
             image:"normal",
             text:"To those who travel together, the aurora is an omen of separation, the solitude-bringer.\n\n\"It's calling out to me,\" she says. \"I don't know if I want to go.\"",
             options:[
-                {text: "Go anyway.",effect:"delta",light:1,frameId:"go"},
-                {text: "Don't go.",effect:"delta",earth:1,frameId:"stay"}
+                {text: "Go anyway.",effect:"delta",light:1,frameId:"go",port:"stoic",resultPort:"halo"},
+                {text: "Don't go.",effect:"delta",earth:1,frameId:"stay",port:"gleeful"}
             ]
         },
         {
@@ -53,7 +53,7 @@ encounters[id] = {
             image:"normal",
             text:"\"I feel at home in it. It accepts me. Actually, no, more than that- I'd even so far as to say it favors me. Not you, though. Just me, by myself, for some reason.\"\n\nWell, that makes sense. (+1 @.)\n\nThey say, you say, that the aurora is a sign reserved only for lone travelers. It disdains the unworthy sight of the masses and the touch of the ground, and so it hides itself where only a few may see it. To one who travels alone, it is a blessing and an auspicious sign. But...",
             options:[
-                {text: "You pause, before adding...",effect:"none",frameId:"cold2"}
+                {text: "You pause, before adding...",effect:"none",frameId:"cold2",port:"gleeful"}
             ]
         },
         {
@@ -61,8 +61,8 @@ encounters[id] = {
             image:"normal",
             text:"To those who travel together, the aurora is an omen of separation, the solitude-bringer.\n\nThe star pauses. \"That's a bit concerning. Especially because I think it's calling for me to come to it.\"",
             options:[
-                {text: "Go.",effect:"delta",light:1,frameId:"go"},
-                {text: "Don't go.",effect:"delta",earth:1,frameId:"stay"}
+                {text: "Go.",effect:"delta",light:1,frameId:"go",port:"neutral",resultPort:"halo"},
+                {text: "Don't go.",effect:"delta",earth:1,frameId:"stay",port:"stoic"}
             ]
         },
         {
@@ -78,8 +78,8 @@ encounters[id] = {
             image:"normal",
             text:"\"-unworthy sight of the masses and the touch of the ground, yes,\" she finishes. \"And so it hides itself where only a few may see it. To one who travels alone, it is a blessing and an auspicious sign. To those who travel together, the aurora is an omen of separation, the solitude-bringer.\"\n\nHow did she know exactly what you were about to say?\n\nShe smiles again. \"Don't worry,\" she says. \"It's okay if you're traveling with a star. I asked it, since it was calling me to go to it. Do you think I should?\"",
             options:[
-                {text: "Go.",effect:"delta",light:1,frameId:"go"},
-                {text: "Don't go.",effect:"delta",earth:1,frameId:"stay"}
+                {text: "Go.",effect:"delta",light:1,frameId:"go",port:"neutral",resultPort:"halo"},
+                {text: "Don't go.",effect:"delta",earth:1,frameId:"stay",port:"stoic"}
             ]
         },
         {
@@ -95,8 +95,8 @@ encounters[id] = {
             image:"normal",
             text:"...the aurora is a sign reserved only for lone travelers. It disdains the unworthy sight of the masses and the touch of the ground, and so it hides itself where only a few may see it. To one who travels alone, it is a blessing and an auspicious sign. But...\n\nYou pause, before adding the second part.\nTo those who travel together, the aurora is an omen of separation, the solitude-bringer.\n\n\"It's calling out to me,\" she replies. \"I don't really want to go, though. Seems pointless to me.\"",
             options:[
-                {text: "Go anyway.",effect:"delta",light:1,frameId:"go"},
-                {text: "Don't go.",effect:"delta",earth:1,frameId:"stay"}
+                {text: "Go anyway.",effect:"delta",light:1,frameId:"go",port:"stoic",resultPort:"halo"},
+                {text: "Don't go.",effect:"delta",earth:1,frameId:"stay",port:"gleeful"}
             ]
         },
         {
@@ -112,8 +112,8 @@ encounters[id] = {
             image:"normal",
             text:"To those who travel together, the aurora is an omen of separation, the solitude-bringer.\n\n\"Huh. Do you think we count as 'alone' enough to get the blessing and not the omen?\"\n...You're not sure.\n\n\"I'm asking because it's calling for me to come to it, and, I'll be honest, I'm kinda interested!\"\n\nHm.",
             options:[
-                {text: "Go.",effect:"delta",light:1,frameId:"go"},
-                {text: "Don't go.",effect:"delta",earth:1,frameId:"stay"}
+                {text: "Go.",effect:"delta",light:1,frameId:"go",port:"ehehe",resultPort:"halo"},
+                {text: "Don't go.",effect:"delta",earth:1,frameId:"stay",port:"ugh"}
             ]
         },
         {
@@ -121,7 +121,7 @@ encounters[id] = {
             image:"normal",
             text:"She nods.\n\nThen her eyes glow, and she rises into the air. Not far- not more than a foot off the ground. You suppose that if she could simply fly through the air freely, you wouldn't need to help her with the climb.\n\nStill, a foot of separation from the ground is enough, it seems. The aurora's colors converge above her, and descend all at once like a waterfall of light, pouring into her small form.\n\n(+1 {.)",
             options:[
-                {text: "Watch.",effect:"delta",cold:1,earth:-1,frameId:"go2"},
+                {text: "Watch.",effect:"delta",cold:1,earth:-1,frameId:"go2",resultPort:"neutral"},
             ]
         },
         {

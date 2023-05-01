@@ -4,8 +4,8 @@ encounters[id] = {
     id:id,
     desc:"Flickering ember",
     images:{
-        "normal":"assets/img/mockup/encountery.png",
-        "changed":"assets/img/mockup/problems.png"
+        "normal":"assets/img/event/flickeringember.png",
+        "changed":"assets/img/event/flickeringember.png"
     },
     frames:[
         {

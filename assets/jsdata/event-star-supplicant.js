@@ -18,9 +18,9 @@ encounters[id] = {
             image:"normal",
             text:"Tied to the supplicant's back, in a densely-wrapped bundle, is a sickly-looking child. They explain that they know this mountain to be a place where powerful entities occasionally manifest. Apparently, they have come here hoping against hope to find a numinous being with the ability to cure their ward and the willingness to do so.\n\nYou look towards the star. They've definitely found such a being in her. But nothing is ever free. Should she give her power away so easily?",
             options:[
-                {text: "Give the blessing freely.",condition:"moteMinimum",conditionMote:"LIGHT",conditionValue:2,effect:"delta",light:-2,heat:3,frameIdx:2},
-                {text: "Give the blessing in exchange for something.",condition:"moteMinimum",conditionMote:"LIGHT",conditionValue:2,effect:"none",frameIdx:3},
-                {text: "Don't give a blessing.",effect:"delta",cold:1,heat:-1,frameId:"refuse"}
+                {text: "Give the blessing freely.",condition:"moteMinimum",conditionMote:"LIGHT",conditionValue:2,effect:"delta",light:-2,heat:3,frameIdx:2,port:"halo",resultPort:"gleeful"},
+                {text: "Give the blessing in exchange for something.",condition:"moteMinimum",conditionMote:"LIGHT",conditionValue:2,effect:"none",frameIdx:3,port:"ehehe",resultPort:"neutral"},
+                {text: "Don't give a blessing.",effect:"delta",cold:1,heat:-1,frameId:"refuse",port:"ugh"}
             ]
         },
         {
@@ -34,10 +34,9 @@ encounters[id] = {
             image:"normal",
             text:"The supplicant asks what you would have of them, in exchange.\n\nThey sound hopeful that you're even asking. Perhaps this is the closest they have ever gotten to a cure with any of their encounters.",
             options:[
-                {text: "Their knowledge for your magic",condition:"moteMinimum",conditionMote:"LIGHT",conditionValue:2,effect:"delta",light:-2,air:3,frameId:"knowledge"},
-                {text: "Their supplies for your magic",condition:"moteMinimum",conditionMote:"LIGHT",conditionValue:2,effect:"delta",light:-2,earth:3,frameId:"supplies"},
-                {text: "Their vitality for your magic",condition:"moteMinimum",conditionMote:"LIGHT",conditionValue:2,effect:"delta",light:-2,bond:3,frameId:"vitality"},
-				{text: "Don't give a blessing.",effect:"delta",cold:1,heat:-1,frameId:"refuse"}
+                {text: "Their knowledge for your magic",condition:"moteMinimum",conditionMote:"LIGHT",conditionValue:2,effect:"delta",light:-2,air:3,frameId:"knowledge",port:"halo"},
+                {text: "Their supplies for your magic",condition:"moteMinimum",conditionMote:"LIGHT",conditionValue:2,effect:"delta",light:-2,earth:3,frameId:"supplies",port:"halo"},
+                {text: "Their vitality for your magic",condition:"moteMinimum",conditionMote:"LIGHT",conditionValue:2,effect:"delta",light:-2,bond:3,frameId:"vitality",port:"halo"}
             ]
         },
         {

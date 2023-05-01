@@ -4,7 +4,7 @@ encounters[id] = {
     id:id,
     desc:"Deep crevasse",
     images:{
-        "normal":"assets/img/mockup/encountery.png"
+        "normal":"assets/img/event/placeholder.png"
     },
     frames:[
         {

@@ -4,18 +4,18 @@ encounters[id] = {
     id:id,
     desc:"Wolf pack",
     images:{
-        "normal":"assets/img/mockup/problems.png",
-        "healed":"assets/img/mockup/encountery.png"
+        "normal":"assets/img/event/wolfpack.png",
+        "healed":"assets/img/event/wolfpack.png"
     },
     frames:[
         {
             image:"normal",
             text:"As you traverse a grove of frost-laden pines... there's a pack of wolves.\n\nWell, a 'pack' is probably overstating it. It's three wolves- the largest of which is visibly limping. When they see you, the two smaller, uninjured wolves spread out and growl, clearly trying to flank you two.\n\n\"What are they? What do they want?\" the star whispers from behind you.\n\nWith wolves? Usually it's easy prey.\n\nAs they close in, you...",
             options: [
-                {text: "Fight",effect:"random",subOpts:[{id:"win"},{id:"lose"}]},
-                {text: "Flee",effect:"delta",air:-1,frameId:"flee"},
-                {text: "Intimidate them",effect:"delta",cold:-2,frameId:"intimidate"},
-                {text: "Heal them",condition:"moteMinimum",conditionMote:"LIGHT",conditionValue:1,effect:"delta",light:-1,frameId:"heal"},
+                {text: "Fight",effect:"random",subOpts:[{id:"win"},{id:"lose"}],port:"fear"},
+                {text: "Flee",effect:"delta",air:-1,frameId:"flee",port:"fear"},
+                {text: "Intimidate them",effect:"delta",cold:-2,frameId:"intimidate",port:"halo"},
+                {text: "Heal them",condition:"moteMinimum",conditionMote:"LIGHT",conditionValue:1,effect:"delta",light:-1,frameId:"heal",port:"gleeful"},
             ]
         },
         {

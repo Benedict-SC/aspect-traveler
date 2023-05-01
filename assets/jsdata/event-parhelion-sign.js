@@ -11,9 +11,9 @@ encounters[id] = {
             image:"normal",
             text:"As the two of you travel across a snowfield early in the morning, a grand sight appears before you. A halo-like ring, around the resplendent sun, and two lesser suns flanking it. A parhelion.\n\n\"What is it?\" the star asks, and, of course, you tell her.\n\n\"...But what is a parhelion, exactly?\"\n\n...You're not actually sure, you realize.\n\nShe seems unhappy that you can't answer her.",
             options: [
-                {text: "Ask what she thinks.",effect:"delta",bond:1,highestStatBranch:true},
-                {text: "Take a better look.",effect:"delta",light:1,frameIdx:1},
-                {text: "Distract her with a race.",effect:"delta",air:1,frameIdx:2}
+                {text: "Ask what she thinks.",effect:"delta",bond:1,highestStatBranch:true,port:"hee"},
+                {text: "Take a better look.",effect:"delta",light:1,frameIdx:1,port:"confused"},
+                {text: "Distract her with a race.",effect:"delta",air:1,frameIdx:2,port:"ehehe"}
             ]
         },
         {
