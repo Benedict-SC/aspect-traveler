@@ -27,7 +27,8 @@ var manifest = [
     {id:"port-sad",src:"assets/img/ports/sad.png"},
     {id:"port-stoic",src:"assets/img/ports/stoic.png"},
     {id:"port-ugh",src:"assets/img/ports/ugh.png"},
-    {id:"port-verysad",src:"assets/img/ports/verysad.png"}
+    {id:"port-verysad",src:"assets/img/ports/verysad.png"},
+    {id:"port-gone",src:"assets/img/ports/gone.png"}
 ]
 //populate manifest from encounter data
 for(let i = 0; i < encounters.ids.length; i++){

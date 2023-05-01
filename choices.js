@@ -44,6 +44,9 @@ function setOptions(options,container){
         if(eventValid){
             setOptionBehavior(opt,buttonbg,enc);
         }
+        if(opt.port){
+            buttonbg.addEventListener("mouseover",function(event){changePortraits(opt.port)});
+        }
 
         g.options.push(optObj);
         container.addChild(optObj);
@@ -54,6 +57,7 @@ function setOptionBehavior(opt,optObj,enc){
         if(inputPaused()){
             return;
         }
+        optObj.removeAllEventListeners();
         if(opt.silence){
             getDarker();
         }
@@ -90,6 +94,10 @@ function setOptionBehavior(opt,optObj,enc){
         }else{
             createjs.Sound.play("button");
             console.log(opt.effect);
+        }
+
+        if(opt.resultPort){
+            changePortraits(opt.resultPort);
         }
 
         if(opt.frameIdx || opt.frameIdx === 0){

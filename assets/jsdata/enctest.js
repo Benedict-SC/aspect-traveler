@@ -12,11 +12,11 @@ encounters[id] = {
             image:"changed",
             text:"Choices. Some might not work.",
             options:[
-                {text: "deplete #",effect:"delta",cold:-1,frameIdx:0},
-                {text: "increase #",effect:"delta",cold:1,frameIdx:0},
+                {text: "deplete #",effect:"delta",cold:-1,frameIdx:0,port:"ehehe"},
+                {text: "increase #",effect:"delta",cold:1,frameIdx:0,port:"fear"},
                 {text: "only with 0 #",condition:"moteMaximum",conditionMote:"COLD",conditionValue:0,effect:"none",frameIdx:1},
                 {text: "only with 8 #",condition:"moteMinimum",conditionMote:"COLD",conditionValue:8,effect:"none",frameIdx:1},
-                {text: "do something random",effect:"random",subOpts:[{id:"red",bond:1},{id:"blue",cold:1},{id:"green",earth:1},{id:"yellow",heat:1}]}
+                {text: "do something random",effect:"random",subOpts:[{id:"red",bond:1},{id:"blue",cold:1},{id:"green",earth:1},{id:"yellow",heat:1}],port:"gone"}
             ]
         },
         {

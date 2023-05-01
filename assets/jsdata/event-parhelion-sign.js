@@ -73,7 +73,7 @@ encounters[id] = {
         {
             id:"COLD",
             image:"normal",
-            text:"\"I'm just kind of worried it could be dangerous. It's more or less three suns at once. It's more or less three suns at once, and that has to be a sign of great power. Something within me deeply fears it.\"\n\nShe shakes her head. \"I'm being silly, aren't I.\"\n\nShe looks happy you asked, though. (+1 @)",
+            text:"\"I'm just kind of worried it could be dangerous. It's more or less three suns at once, and that has to be a sign of great power. Something within me deeply fears it.\"\n\nShe shakes her head. \"I'm being silly, aren't I.\"\n\nShe looks happy you asked, though. (+1 @)",
             options:[
                 {text: "Continue",effect:"end"}
             ]

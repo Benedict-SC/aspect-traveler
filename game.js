@@ -50,9 +50,14 @@ function buildGame(){
     g.imbue.x = -1800;
     g.imbue.y = -960;
     g.imbueSummonState = -1;
-    g.char = new createjs.Bitmap(assets["port-halo"]);
+    g.char = new createjs.Bitmap(assets["port-gone"]);
+    g.charFade = new createjs.Bitmap(assets["port-gone"]);
     g.char.x = 548;
     g.char.y = 91;
+    g.charFade.x = 548;
+    g.charFade.y = 91;
+    g.charFade.alpha = 0;
+    g.midfade = false;
     g.charshadow = new createjs.Bitmap(assets.charshadow);
     g.charshadow.x = 0;
     g.charshadow.y = 0;
@@ -61,6 +66,7 @@ function buildGame(){
     stage.addChild(g.charshadow);
     stage.addChild(g.overlay);
     stage.addChild(g.char);
+    stage.addChild(g.charFade);
     stage.addChild(g.seed);
     stage.addChild(g.imbue);
 
@@ -302,6 +308,34 @@ function dismissImbue(){
         }
     }
     createjs.Ticker.addEventListener("tick",summon);
+}
+function changePortraits(expression){
+    console.log("are we even calling this??");
+    g.charFade.image = assets["port-" + expression];
+    if(g.midFade){
+        return;
+    }
+    g.midFade = true;
+    let percent = 0;
+    let crossfade = function(event){
+        let secs = event.delta/1000;
+        percent += 5*secs;
+        console.log("a crossfade is happening (" + percent + " %)");
+        if(expression == "gone"){
+            g.char.alpha = 1 - percent;
+            if(g.char.alpha > 1) g.char.alpha = 1;
+        }
+        g.charFade.alpha = .3 + percent;
+        if(g.charFade.alpha > 1) g.charFade.alpha = 1;
+        if(percent >= 1){
+            g.char.image = g.charFade.image;
+            g.char.alpha = 1;
+            g.charFade.alpha = 0;
+            g.midFade = false;
+            createjs.Ticker.removeEventListener("tick",crossfade);
+        }
+    }
+    createjs.Ticker.addEventListener("tick",crossfade);
 }
 createjs.Ticker.framerate = 60;
 function tick(event) { stage.update(event); }
