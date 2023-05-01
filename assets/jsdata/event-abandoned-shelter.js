@@ -2,7 +2,7 @@ var id = "ev-03";
 var encounters = encounters || {}
 encounters[id] = {
     id:id,
-    desc:"Abandoned Shelter",
+    desc:"Abandoned shelter",
     images:{
         "normal":"assets/img/mockup/tents.png"
     },

@@ -15,44 +15,6 @@ function holdInput(referent){
     //console.log("hold added: %o",referent);
 }
 
-//create default manifest
-var manifest = [
-    {id:"bg",src:"assets/img/ui/mtnbg.png"},
-    {id:"overlay",src:"assets/img/ui/frame.png"},
-    {id:"charshadow",src:"assets/img/ui/frame_shadow.png"},
-    {id:"seed",src:"assets/img/ui/seed_base.png"},
-    {id:"moteslot",src:"assets/img/ui/mote_sidebar.png"},
-    {id:"motedot",src:"assets/img/ui/mote_dot.png"},
-    {id:"BOND",src:"assets/img/ui/mote_bond.png"},
-    {id:"HEAT",src:"assets/img/ui/mote_heat.png"},
-    {id:"COLD",src:"assets/img/ui/mote_cold.png"},
-    {id:"LIGHT",src:"assets/img/ui/mote_light.png"},
-    {id:"EARTH",src:"assets/img/ui/mote_earth.png"},
-    {id:"AIR",src:"assets/img/ui/mote_air.png"},
-    {id:"port-angry",src:"assets/img/ports/angry.png"},
-    {id:"port-annoyed",src:"assets/img/ports/annoyed.png"},
-    {id:"port-ehehe",src:"assets/img/ports/ehehe.png"},
-    {id:"port-fear",src:"assets/img/ports/fear.png"},
-    {id:"port-gleeful",src:"assets/img/ports/gleeful.png"},
-    {id:"port-gleeful2",src:"assets/img/ports/gleeful_2.png"},
-    {id:"port-halo",src:"assets/img/ports/halo.png"},
-    {id:"port-hee",src:"assets/img/ports/hee.png"},
-    {id:"port-neutral",src:"assets/img/ports/neutral.png"},
-    {id:"port-sad",src:"assets/img/ports/sad.png"},
-    {id:"port-stoic",src:"assets/img/ports/stoic.png"},
-    {id:"port-ugh",src:"assets/img/ports/ugh.png"},
-    {id:"port-verysad",src:"assets/img/ports/verysad.png"}
-]
-//populate manifest from encounter data
-for(let i = 0; i < encounters.ids.length; i++){
-    let encid = encounters.ids[i];
-    let enc = encounters[encid];
-    for (const [key, value] of Object.entries(enc.images)) {
-        let item = {id:encid + key,src:value};
-        manifest.push(item);
-    }
-}
-
 function initializeGame(){
     var loadQueue = new createjs.LoadQueue(false);
     loadQueue.on("fileload",onFileLoad,this);
@@ -60,6 +22,16 @@ function initializeGame(){
     loadQueue.loadManifest(manifest);
 }
 function tryInit(){
+    document.getElementById("loadmessage").hidden = true;
+    document.getElementById("startbutton").hidden = false;
+}
+function startGame(){
+    document.getElementById("startmenu").hidden = true;
+    document.getElementById("maincanv").hidden = false;
+    initSounds();
+    buildGame();
+}
+function buildGame(){
     stage = new createjs.Stage("maincanv");
     g.bg = new createjs.Bitmap(assets.bg);
     g.bg.x = 0;
@@ -111,87 +83,15 @@ function tryInit(){
         g.motes[i].container = moteContainer;
         updateMoteCount(i,0);
     }
+    g.darkness = new createjs.Bitmap(assets.darkness);
+    g.darkness.alpha = 0;
+    g.darkPercent = 0;
+    stage.addChild(g.darkness);
 
     g.options = [];
-    g.encid = "e01";
+    g.encid = "test";
     loadEventFrame(g.encid);
     createjs.Ticker.on("tick", tick);
-}
-function getMoteById(moteid){
-    for(let i = 0; i < g.motes.length; i++){
-        if(g.motes[i].id == moteid.toUpperCase())
-            return g.motes[i];
-    }
-    return null;
-}
-function getHighestMote(){
-    let highest = 0;
-    for(let i = 1; i < g.motes.length; i++){
-        if(g.motes[i].count > g.motes[highest].count)
-            highest = i;
-    }
-    return g.motes[highest];
-}
-function updateMoteCount(idx,delta){
-    let mote = g.motes[idx];
-    let startCount = mote.count;
-    mote.count += delta;
-    if(mote.count < 0) mote.count = 0;
-    let dotBox = mote.container.getChildByName("dots");
-    dotBox.removeAllChildren();
-    for(let  i = 0; i < startCount; i++){
-        let dot = new createjs.Bitmap(assets.motedot);
-        dot.x = i*6;
-        dot.y = (i%2 == 1 ? 8 : 0);
-        if(delta < 0){ //if some are disappearing 
-            if(i >= mote.count){ //and you're one of the ones disappearing
-                //shrink out of existence
-                holdInput(dot);
-                dot.homeX = dot.x;
-                dot.homeY = dot.y;
-                dot.addEventListener("tick",function(){
-                    dot.scale = dot.scale - 0.1;
-                    let offset = 6 - (6*dot.scale);
-                    dot.x = dot.homeX + offset;
-                    dot.y = dot.homeY + offset;
-                    if(dot.scale <= 0){
-                        freeHold(dot);
-                        dot.removeAllEventListeners();
-                        dotBox.removeChild(dot);
-                    }
-                });
-            }
-        }
-        dotBox.addChild(dot);
-    }
-    if(delta > 0){
-        let i = startCount;
-        while(i < mote.count){
-            let dot = new createjs.Bitmap(assets.motedot);
-            dot.homeX = i*6;
-            dot.x = dot.homeX + 60;
-            dot.y = (i%2 == 1 ? 8 : 0);
-            dot.alpha = 0;
-            holdInput(dot);
-            dot.addEventListener("tick",function(event){
-                let pps = 300;
-                let aps = 5;
-                let secs = event.delta/1000;
-                let pixels = Math.floor(pps*secs);
-                let alphadelta = aps * secs;
-                dot.x -= pixels;
-                dot.alpha += alphadelta;
-                if(dot.x <= dot.homeX){
-                    freeHold(dot);
-                    dot.x = dot.homeX;
-                    dot.alpha = 1;
-                    dot.removeAllEventListeners();
-                }
-            });
-            dotBox.addChild(dot);
-            i++;
-        }
-    }
 }
 function loadEventFrame(encid, idx = 0){
     unloadEventFrame(function(){
@@ -203,12 +103,12 @@ function loadEventFrame(encid, idx = 0){
         g.frameContainer = new createjs.Container();
     
         let options = frame.options;
-        g.encounterText = new createjs.BitmapText(insertNewlines(frame.text,520),fontsheet);//createjs.Text(first.text,"13px Arial","#FFFFFF");
+        g.encounterText = new createjs.BitmapText(insertNewlines(frame.text,528),fontsheet);//createjs.Text(first.text,"13px Arial","#FFFFFF");
         //g.encounterText.lineWidth = 520;
         g.encounterText.lineHeight = 19;
-        g.encounterText.x = 140;
+        g.encounterText.x = 136;
         g.encounterText.y = 261;
-        g.encTextShadow = new createjs.BitmapText(insertNewlines(frame.text,520),shadowsheet);
+        g.encTextShadow = new createjs.BitmapText(insertNewlines(frame.text,528),shadowsheet);
         g.encTextShadow.lineHeight = 19;
         g.encTextShadow.x = g.encounterText.x + 1
         g.encTextShadow.y = g.encounterText.y + 1
@@ -254,93 +154,6 @@ function unloadEventFrame(whenDone){
         }
     });
 }
-function setOptions(options,container){
-    let enc = encounters[g.encid];
-    g.options = [];
-    for(let i = 0; i < options.length; i++){
-        let opt = options[i];
-
-        let eventValid = true;
-        if(opt.condition){
-            if(opt.condition == "moteMaximum"){
-                let mote = getMoteById(opt.conditionMote);
-                eventValid = mote.count <= opt.conditionValue;
-            }else if(opt.condition == "moteMinimum"){
-                let mote = getMoteById(opt.conditionMote);
-                eventValid = mote.count >= opt.conditionValue;
-            }
-        }
-        let textColor = eventValid ? "#FFFFFF" : "#AAAAAA";
-        let bgColor = eventValid ? "#000000" : "#111111";
-
-        let optObj = new createjs.Container();
-        let optText = new createjs.Text(opt.text,"14px Arial",textColor);
-        optText.x = 8;
-        optText.y = 8;
-        let width = optText.getBounds().width;
-        let buttonbg = new createjs.Shape();
-        buttonbg.graphics.beginFill(bgColor).drawRoundRect(0,0,width+18,30,9);
-        optObj.addChild(buttonbg);
-        optObj.addChild(optText);
-        optObj.x = 677;
-        optObj.y = 115 + (i*40);
-        //add button logic
-        if(eventValid){
-            setOptionBehavior(opt,optObj,enc);
-        }
-
-        g.options.push(optObj);
-        container.addChild(optObj);
-    }
-}
-function setOptionBehavior(opt,optObj,enc){
-    optObj.addEventListener("click",function(event){
-        if(inputPaused()){
-            return;
-        }
-        let highestMoteAtStart = getHighestMote();
-        if(opt.effect == "delta"){
-            if(opt.bond){ updateMoteCount(0,opt.bond);}
-            if(opt.heat){ updateMoteCount(1,opt.heat);}
-            if(opt.cold){ updateMoteCount(2,opt.cold);}
-            if(opt.light){ updateMoteCount(3,opt.light);}
-            if(opt.earth){ updateMoteCount(4,opt.earth);}
-            if(opt.air){ updateMoteCount(5,opt.air);}
-        }else if(opt.effect == "end"){
-            unloadEventFrame();
-            g.encid = null;
-        }else{
-            console.log(opt.effect);
-        }
-
-        if(opt.frameIdx || opt.frameIdx === 0){
-            loadEventFrame(g.encid,opt.frameIdx);
-        }else if(opt.frameId){
-            for(let j = 0; j < enc.frames.length; j++){
-                if(enc.frames[j].id == opt.frameId){
-                    loadEventFrame(g.encid,j);
-                    break;
-                }
-            }
-        }else if(opt.idPool){
-            let randomIndex = Math.floor(Math.random() * opt.idPool.length);
-            let randomId = opt.idPool[randomIndex];
-            for(let j = 0; j < enc.frames.length; j++){
-                if(enc.frames[j].id == randomId){
-                    loadEventFrame(g.encid,j);
-                    break;
-                }
-            }
-        }else if(opt.highestStatBranch){
-            for(let j = 0; j < enc.frames.length; j++){
-                if(enc.frames[j].id == highestMoteAtStart.id){
-                    loadEventFrame(g.encid,j);
-                    break;
-                }
-            }
-        }
-    })
-}
 function onFileLoad(event){
     assets[event.item.id] = event.result;
 }
@@ -372,6 +185,17 @@ function insertNewlines(textstring,width){
     }
     lines.push(currentLine);
     return lines.join("\n");
+}
+function getDarker(){
+    g.darkPercent += 0.15;
+    if(g.darkPercent > 1) g.darkPercent = 1;
+    g.darkness.alpha = g.darkPercent;
+    createjs.Sound.volume = userMasterVolumePref * (1 - g.darkPercent);
+}
+function breakDarkness(){
+    g.darkPercent = 0;
+    g.darkness.alpha = g.darkPercent;
+    createjs.Sound.volume = userMasterVolumePref * (1 - g.darkPercent);
 }
 createjs.Ticker.framerate = 60;
 function tick(event) { stage.update(event); }

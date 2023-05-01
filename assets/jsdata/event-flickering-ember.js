@@ -2,7 +2,7 @@ var id = "ev-02";
 var encounters = encounters || {}
 encounters[id] = {
     id:id,
-    desc:"Flickering Ember",
+    desc:"Flickering ember",
     images:{
         "normal":"assets/img/mockup/encountery.png",
         "changed":"assets/img/mockup/problems.png"
@@ -14,13 +14,13 @@ encounters[id] = {
             options: [
                 {text: "Harvest embers",effect:"delta",heat:1,frameId:"harvest_embers"},
 				{text: "Rest a while here", effect:"none",frameId:"rest_here"},
-				{text: "Revive the hearth",effect:"delta",heat:-1,frameId:"revive_hearth"}
+				{text: "Revive the hearth",condition:"moteMinimum",conditionMote:"HEAT",conditionValue:1,effect:"delta",heat:-1,frameId:"revive_hearth"}
             ]
         },
         {
             id:"harvest_embers",
 			image:"changed",
-		text:"\"Every bit of heat could be useful,\" you say to your charge. \"We should collect as much of it as we can.\" She nods with understanding, and reaches out to the hearth, and draws the last vestiges of heat forth from the embers.\n\n(You gain 1 (heat symbol).)",
+		text:"\"Every bit of heat could be useful,\" you say to your charge. \"We should collect as much of it as we can.\" She nods with understanding, and reaches out to the hearth, and draws the last vestiges of heat forth from the embers.\n\n(You gain 1 $.)",
             options:[
                 {text: "Every bit counts",effect:"none",frameId:"conclusion"},
             ]
@@ -37,9 +37,9 @@ encounters[id] = {
 		{
             id:"pro_rest",
 			image:"changed",
-            text:"\"I see!\" your star says. \"In that case, scoot over and make some room, I'm going to take one of these rests as well!\" \n\nYour star has gained (earth symbol).",
+            text:"\"I see!\" your star says. \"In that case, scoot over and make some room, I'm going to take one of these rests as well!\" \n\nYour star has gained }.",
             options:[
-                {text: "Continue",effect:"delta",earth:1,frameId:"conclusion"}
+                {text: "Continue",effect:"none",frameId:"conclusion"}
             ]
         },
 		{
@@ -47,13 +47,13 @@ encounters[id] = {
 			image:"changed",
             text:"\"I doubt anybody would want to spend their time on doing literally nothing, had they a choice,\" you answer your curious star. \"Our bodies are as chains around our necks, sometimes.\"\n\n\"I thought your neck was part of your body. If your body is a chain around your neck, that's recursion.\"\n\n\You are forced to agree she has a point. \"If you star-folk do not feel exhaustion as we do, then you are luckier than we.\"\n\nShe nods.",
             options:[
-                {text: "Continue",effect:"delta",earth:1,frameId:"conclusion"}
+                {text: "Continue",effect:"none",frameId:"conclusion"}
             ]
         },
         {
             id:"revive_hearth",
 			image:"changed",
-            text:"\"It's sad to watch the embers just... go out, like that,\" the star whispers. She reaches out, and flicks a charge of (heat) at the hearth.\n\n\"Is... that a prudent way to spend our warmth?\" You ask her.\n\n\"It'll work out!\" she says, cheerfully. \"See?\" \n\nIndeed, before long, the hearth is a roaring flame once again. You collect (3x heat symbol). ",
+            text:"\"It's sad to watch the embers just... go out, like that,\" the star whispers. She reaches out, and flicks a charge of $ at the hearth.\n\n\"Is... that a prudent way to spend our warmth?\" You ask her.\n\n\"It'll work out!\" she says, cheerfully. \"See?\" \n\nIndeed, before long, the hearth is a roaring flame once again. You collect $$$.",
             options:[
                 {text: "Guess she knows what she's doing sometimes",effect:"delta",heat:4, frameId:"conclusion"}
             ]

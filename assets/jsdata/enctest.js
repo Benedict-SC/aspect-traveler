@@ -12,16 +12,16 @@ encounters[id] = {
             image:"changed",
             text:"Choices. Some might not work.",
             options:[
-                {text: "deplete cold",effect:"delta",cold:-1,frameIdx:0},
-                {text: "increase cold",effect:"delta",cold:1,frameIdx:0},
-                {text: "only with 0 cold",condition:"moteMaximum",conditionMote:"COLD",conditionValue:0,effect:"none",frameIdx:1},
-                {text: "only with 8 cold",condition:"moteMinimum",conditionMote:"COLD",conditionValue:8,effect:"none",frameIdx:1},
-                {text: "do something random",effect:"none",idPool:["red","blue","green","yellow"]}
+                {text: "deplete #",effect:"delta",cold:-1,frameIdx:0},
+                {text: "increase #",effect:"delta",cold:1,frameIdx:0},
+                {text: "only with 0 #",condition:"moteMaximum",conditionMote:"COLD",conditionValue:0,effect:"none",frameIdx:1},
+                {text: "only with 8 #",condition:"moteMinimum",conditionMote:"COLD",conditionValue:8,effect:"none",frameIdx:1},
+                {text: "do something random",effect:"random",subOpts:[{id:"red",bond:1},{id:"blue",cold:1},{id:"green",earth:1},{id:"yellow",heat:1}]}
             ]
         },
         {
             image:"normal",
-            text:"You had the right amount of cold to get here.",
+            text:"You had the right amount of # to get here.",
             options:[
                 {text: "Continue",effect:"end"}
             ]
@@ -31,7 +31,7 @@ encounters[id] = {
             image:"normal",
             text:"Red was randomly selected.",
             options:[
-                {text: "Do something random again",effect:"none",idPool:["red","blue","green","yellow"]},
+                {text: "Do something random again",effect:"random",subOpts:[{id:"red",bond:1},{id:"blue",cold:1},{id:"green",earth:1},{id:"yellow",heat:1}]},
                 {text: "Continue",effect:"end"}
             ]
         },
@@ -40,7 +40,7 @@ encounters[id] = {
             image:"normal",
             text:"Blue was randomly selected, which means you had the best possible luck in this event.",
             options:[
-                {text: "Do something random again",effect:"none",idPool:["red","blue","green","yellow"]},
+                {text: "Do something random again",effect:"random",subOpts:[{id:"red",bond:1},{id:"blue",cold:1},{id:"green",earth:1},{id:"yellow",heat:1}]},
                 {text: "Continue",effect:"end"}
             ]
         },
@@ -49,7 +49,7 @@ encounters[id] = {
             image:"normal",
             text:"Green was randomly selected.",
             options:[
-                {text: "Do something random again",effect:"none",idPool:["red","blue","green","yellow"]},
+                {text: "Do something random again",effect:"random",subOpts:[{id:"red",bond:1},{id:"blue",cold:1},{id:"green",earth:1},{id:"yellow",heat:1}]},
                 {text: "Continue",effect:"end"}
             ]
         },
@@ -58,7 +58,7 @@ encounters[id] = {
             image:"normal",
             text:"Yellow was randomly selected.",
             options:[
-                {text: "Do something random again",effect:"none",idPool:["red","blue","green","yellow"]},
+                {text: "Do something random again",effect:"random",subOpts:[{id:"red",bond:1},{id:"blue",cold:1},{id:"green",earth:1},{id:"yellow",heat:1}]},
                 {text: "Continue",effect:"end"}
             ]
         }
