@@ -15,6 +15,9 @@ function setOptions(options,container){
                 eventValid = mote.count >= opt.conditionValue;
             }
         }
+        if(opt.hidden && !eventValid){
+            continue;
+        }
         let optFont = eventValid ? fontsheet : graysheet;
         //let textColor = eventValid ? "#FFFFFF" : "#AAAAAA";
         let bgColor = eventValid ? "#000000" : "#111111";
@@ -55,6 +58,15 @@ function setOptionBehavior(opt,optObj,enc){
         let highestMoteAtStart = getHighestMote();
         if(opt.effect == "delta"){
             processMoteChanges(opt);
+        }else if(opt.effect == "minimize"){
+            for(let i = 0; i < opt.motes.length; i++){
+                let mote = getMoteById(opt.motes[i]);
+                let delta = mote.count - 1;
+                let dummyOpt = {};
+                dummyOpt[opt.motes[i]] = -delta;
+                processMoteChanges(dummyOpt,true);
+            }
+            createjs.Sound.play("damage");
         }else if(opt.effect == "end"){
             createjs.Sound.play("button");
             unloadEventFrame();
@@ -85,7 +97,7 @@ function setOptionBehavior(opt,optObj,enc){
         }
     })
 }
-function processMoteChanges(opt){
+function processMoteChanges(opt,disablesound){
     //while updating, tally up whether the outcome has negative or positive results
             let ups = 0;
             let downs = 0;
@@ -108,7 +120,9 @@ function processMoteChanges(opt){
                 if(opt.air > 0){ups++;}else{downs++;}
                 updateMoteCount(5,opt.air);
             }
-            
+            if(disablesound){
+                return;
+            }
             //check outcome and play result chimes
             if(ups > 0 && downs <= 0){
                 createjs.Sound.play("good-chime");
