@@ -4,14 +4,14 @@ encounters[id] = {
     id:id,
     desc:"Game over",
     images:{
-        "normal":"assets/img/mockup/encountery.png"
+        "normal":"assets/img/event/badend_air.png"
     },
     frames:[
         {
             image:"normal",
             text:"And after that encounter, from then on, you find your progress blocked, somehow, no matter what you do.\n\nEvery path you take is obstructed. Every bridge you reach is impassable. All around you, the world conspires to prevent you from going where you want to go, let alone exploring the things you want to explore.\n\n(~ hit zero.)",
             options: [
-                {text: "GAME OVER",effect:"none",frameIdx:1,fadeMusic:true}
+                {text: "GAME OVER",effect:"none",frameIdx:1,fadeMusic:true,resultPort:"gone"}
             ]
         },
         {

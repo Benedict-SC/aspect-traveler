@@ -4,14 +4,14 @@ encounters[id] = {
     id:id,
     desc:"Game over",
     images:{
-        "normal":"assets/img/mockup/encountery.png"
+        "normal":"assets/img/event/badend_earth.png"
     },
     frames:[
         {
             image:"normal",
             text:"A while after that encounter, you realize that your pack feels much lighter than before. (} hit zero.)\n\nYou stop, drop your rucksack to take an inventory of, and swear aloud as you realize the sheer magnitude of your folly. The vast majority of the goods in your climbing backpack are just- gone.\n\nWhere did you lose all of your supplies? Had you not bound them to your pack properly? Had you lost them in one of the previous encounters and not noticed somehow? How did you fail so terribly in doing your due diligence?",
             options: [
-                {text: "GAME OVER",effect:"none",frameIdx:1,fadeMusic:true}
+                {text: "GAME OVER",effect:"none",frameIdx:1,fadeMusic:true,resultPort:"gone"}
             ]
         },
         {

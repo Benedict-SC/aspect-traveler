@@ -4,14 +4,14 @@ encounters[id] = {
     id:id,
     desc:"Game over",
     images:{
-        "normal":"assets/img/mockup/encountery.png"
+        "normal":"assets/img/event/badend_heat.png"
     },
     frames:[
         {
             image:"normal",
             text:"It creeps up on you all of a sudden- an ice storm heavier than any you've encountered before.\n\nYou need heat and fire, for this, to keep yourself and the star safe- but you have nothing left.\n\nYou can't feel the cold anymore.\n\n($ hit zero.)",
             options: [
-                {text: "GAME OVER",effect:"none",frameIdx:1,fadeMusic:true}
+                {text: "GAME OVER",effect:"none",frameIdx:1,fadeMusic:true,resultPort:"fear"}
             ]
         },
         {

@@ -4,14 +4,14 @@ encounters[id] = {
     id:id,
     desc:"Game over",
     images:{
-        "normal":"assets/img/mockup/encountery.png"
+        "normal":"assets/img/event/badend_bond.png"
     },
     frames:[
         {
             image:"normal",
             text:"You're finished.\n\nYou can't go on any further. It's too difficult. The climb is too hard. It's too much.\n\nMaybe it's the physical stress, or maybe it was emotional. Either way, you've exhausted your resolve.\n\n(@ hit zero.)",
             options: [
-                {text: "GAME OVER",effect:"none",frameIdx:1,fadeMusic:true}
+                {text: "GAME OVER",effect:"none",frameIdx:1,fadeMusic:true,resultPort:"gone"}
             ]
         },
         {

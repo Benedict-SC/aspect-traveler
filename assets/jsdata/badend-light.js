@@ -4,14 +4,14 @@ encounters[id] = {
     id:id,
     desc:"Game over",
     images:{
-        "normal":"assets/img/mockup/encountery.png"
+        "normal":"assets/img/event/badend_light.png"
     },
     frames:[
         {
             image:"normal",
             text:"And then, abruptly, without warning, the star collapses to the ground behind you.\n\nYou rush over in alarm, but you can't wake her up despite your best efforts.\n\n({ hit zero.)",
             options: [
-                {text: "GAME OVER",effect:"none",frameIdx:1,fadeMusic:true}
+                {text: "GAME OVER",effect:"none",frameIdx:1,fadeMusic:true,resultPort:"gone"}
             ]
         },
         {

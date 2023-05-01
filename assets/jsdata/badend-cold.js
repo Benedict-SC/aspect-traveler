@@ -4,14 +4,14 @@ encounters[id] = {
     id:id,
     desc:"Game over",
     images:{
-        "normal":"assets/img/mockup/encountery.png"
+        "normal":"assets/img/event/badend_cold.png"
     },
     frames:[
         {
             image:"normal",
             text:"\"...I should scour it away,\" the star murmurs, from behind you.\n\n...What?\n\n\"The cold,\" she says. \"The ice and snow, here. All of it. I was afraid to, before. I thought I'd die, if I did, so I didn't, even though I wanted to. But I'm not afraid of that anymore. I have the power within me. So I should banish the cold for good.\"\n\n(# hit zero.)",
             options: [
-                {text: "GAME OVER",effect:"none",frameIdx:1,fadeMusic:true}
+                {text: "GAME OVER",effect:"none",frameIdx:1,fadeMusic:true,resultPort:"halo"}
             ]
         },
         {
