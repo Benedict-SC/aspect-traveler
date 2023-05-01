@@ -125,7 +125,7 @@ encounters[id] = {
             image:"morefaded",
             text:"The thought of leaving the glowing star alone, out in the cold, as its guardian's body cools around it, fills you with unbearable dismay.\n\n...You're not sure why.\n\nIt's not like the star is a person, after all.",
             options:[
-                {text: "Reach for the star.",effect:"none",frameId:"reach"}
+                {text: "Reach for the star.",effect:"none",frameId:"reach",resultPort:"stoic"}
             ]
         },
         {
@@ -133,7 +133,7 @@ encounters[id] = {
             image:"morefaded",
             text:"The thought of simply ignoring the angel's last wish, and leaving it to perish alone, seems too cruel to accept. (+$$)\n\nThe angel fought against the forces of unmaking, for this world and others.\n\nYou owe a debt to the angel, for that.",
             options:[
-                {text: "Reach for the star.",effect:"none",frameId:"reach"}
+                {text: "Reach for the star.",effect:"none",frameId:"reach",resultPort:"stoic"}
             ]
         },
         {
@@ -141,7 +141,7 @@ encounters[id] = {
             image:"morefaded",
             text:"The thought of just leaving something as interesting as the star behind seems unthinkable to you. This is probably the most exciting thing that's ever happened to you! You'd regret it for the rest of your life, if you turned an opportunity like this down. (+$, +~)",
             options:[
-                {text: "Reach for the star.",effect:"none",frameId:"reach"}
+                {text: "Reach for the star.",effect:"none",frameId:"reach",resultPort:"stoic"}
             ]
         },
         {
@@ -175,7 +175,7 @@ encounters[id] = {
             image:"fadest",
             text:"When the star ascends to the sky, you want to go with it, so that you can leave behind this world, and everything in this world that ties you to it. (+#)\n\n...This is a thing the star can do, and a thing which the angel can promise you. You realize this with, at this point, familiar certainty.\n\nVery well.\n\nThen it looks like you've got a reason to take this journey, after all.",
             options:[
-                {text: "Reach for the star.",effect:"none",frameId:"reach"}
+                {text: "Reach for the star.",effect:"none",frameId:"reach",resultPort:"stoic"}
             ]
         },
         {
@@ -191,7 +191,7 @@ encounters[id] = {
             image:"fadest",
             text:"When the star ascends to the sky, you want to go with it, so that you can see the true shape of the universe, from a higher perspective. (+{)\n\n...This is a thing the star can do, and a thing which the angel can promise you. You realize this with, at this point, familiar certainty.\n\nVery well.\n\nThen it looks like you've got a reason to take this journey, after all.",
             options:[
-                {text: "Reach for the star.",effect:"none",frameId:"reach"}
+                {text: "Reach for the star.",effect:"none",frameId:"reach",resultPort:"stoic"}
             ]
         },
         {
@@ -207,7 +207,7 @@ encounters[id] = {
             image:"fadest",
             text:"Just something to bring home and put up on the mantel- material proof that you once met a fallen angel and delivered a star to the mountain peak, a magical treasure with a unique power, to prove the veracity of your story. Is that too much to ask- material reward for your trouble? (+})\n\n...This is a thing the star can do, and a thing which the angel can promise you. You realize this with, at this point, familiar certainty.\n\nVery well.\n\nThen it looks like you've got a reason to take this journey, after all.",
             options:[
-                {text: "Reach for the star.",effect:"none",frameId:"reach"}
+                {text: "Reach for the star.",effect:"none",frameId:"reach",resultPort:"stoic"}
             ]
         },
         {
@@ -215,7 +215,7 @@ encounters[id] = {
             image:"gone",
             text:"You were worried that the star's surface might be hot, given how brightly it's glowing. It isn't. It's cool and pleasant to the touch.\nThe moment your fingers make contact with the surface of the star, it splits wide open, down its length,\nAnd disgorges a girl-child out onto the snow-covered ground before you.\n\n(She's wearing the same clothes as you. (Why is she wearing the same clothes as you??)\n\nWhile you are reeling from this development, the girl- the star??- stands up and pats herself off.",
             options:[
-                {text: "Uh...",effect:"none",frameId:"reach2"}
+                {text: "Uh...",effect:"none",frameId:"reach2",resultPort:"neutral"}
             ]
         },
         {
@@ -223,7 +223,7 @@ encounters[id] = {
             image:"gone",
             text:"\"Hi!\" She says to you. \"I'm a star! What's that?\" she asks, before you can formulate any response.\n\nShe's pointing upwards, and you follow her finger, to see nothing in particular. You're not sure what she's talking about.\n\n\"That. The big... thing. Up there.\"\n\nIs she talking about the whole entire sky?",
             options:[
-                {text: "Is she?",effect:"none",frameId:"reach3"}
+                {text: "Is she?",effect:"none",frameId:"reach3",resultPort:"confused"}
             ]
         },
         {
@@ -231,7 +231,7 @@ encounters[id] = {
             image:"gone",
             text:"Apparently she is.\n\n\"The sky! Wow! What about that?\"\n\nThat's... the ground.\n\nThis line of inquiry continues for a while. She seems very very excited to learn these extremely basic concepts, and you do your best to bring her up to speed with the questions she's asking, about approximately everything.",
             options:[
-                {text: "This...",effect:"delta",bond:1,frameId:"reach4"}
+                {text: "This...",effect:"delta",bond:1,frameId:"reach4",resultPort:"gleeful_2"}
             ]
         },
         {
@@ -239,7 +239,7 @@ encounters[id] = {
             image:"gone",
             text:"Nobody told you that she was going to be a person.\n\nYou don't know if you're ready for this.\n\n(+@)",
             options:[
-                {text: "So, uh, the angel...",effect:"none",frameId:"reach5"}
+                {text: "So, uh, the angel...",effect:"none",frameId:"reach5",resultPort:"verysad"}
             ]
         },
         {
@@ -247,7 +247,7 @@ encounters[id] = {
             image:"gone",
             text:"You gesture at the angel, kneeling in the snow behind the star.\n\nIt is certainly dead, now. It's not the kind of certainty that comes from angel-speech. It's just... normal certainty, from the coolness of its body, and the stony pallor of its skin, and the way its fiery wings have faded to ash.\n\nThe star turns around, sets her eyes on the angel's corpse as if she's truly seeing the angel's sorry state for the first time, and starts bawling uncontrollably.",
             options:[
-                {text: "It'll be okay.",effect:"none",frameId:"reach6"}
+                {text: "It'll be okay.",effect:"none",frameId:"reach6",resultPort:"sad"}
             ]
         },
         {

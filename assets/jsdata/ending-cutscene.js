@@ -8,7 +8,7 @@ encounters[id] = {
         "shining":"assets/img/event/ending2.png",
         "rising":"assets/img/event/ending3.png",
         "gone":"assets/img/event/ending4.png",
-        "empty":"assets/img/event/encountery.png"
+        "empty":"assets/img/event/ending5.png"
     },
     frames:[
         {

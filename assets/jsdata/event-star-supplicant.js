@@ -4,7 +4,7 @@ encounters[id] = {
     id:id,
     desc:"Star supplicant",
     images:{
-        "normal":"assets/img/mockup/supplicant.png"
+        "normal":"assets/img/event/starsupplicant.png"
     },
     frames:[
         {

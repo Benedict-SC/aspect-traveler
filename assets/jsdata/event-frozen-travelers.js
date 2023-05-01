@@ -18,9 +18,9 @@ encounters[id] = {
             image:"normal",
             text:"\"Do you think we can help them?\"\n\nHelp them? They've been frozen in ice for who knows how long. They'd have died in minutes, unable to breathe.\n\n\"Well, we should still try, shouldn't we? There's got to be something we can do!\"\n\nWell. Maybe you could...",
             options:[
-                {text: "...No, keep moving.",effect:"delta",cold:1,frameIdx:2},
-                {text: "Let her melt the ice",effect:"delta",bond:1,frameId:"melty"},
-                {text: "Try and break them out yourself",effect:"delta",heat:1,earth:1,frameIdx:5}
+                {text: "...No, keep moving.",effect:"delta",cold:1,frameIdx:2,port:"stoic"},
+                {text: "Let her melt the ice",effect:"delta",bond:1,frameId:"melty",port:"hee"},
+                {text: "Try and break them out yourself",effect:"delta",heat:1,earth:1,frameIdx:5,port:"neutral"}
             ]
         },
         {
@@ -35,7 +35,7 @@ encounters[id] = {
             image:"normal",
             text:"There's no way she could possibly save them, but you feel a pang of sympathy for her, and your stock of @ grows. She should get to try, shouldn't she? \n\n\"So, if they're too cold to breathe, maybe they're too cold to die, too! How about we heat up their breathing, before we heat up their dying?\"\n\nYeah, you're pretty sure that's not how that--\n\n\"Here, we just have to...\"",
             options:[
-                {text: "--wait, what?",effect:"delta",heat:-1,frameIdx:4}
+                {text: "--wait, what?",effect:"delta",heat:-1,frameIdx:4,resultPort:"halo"}
             ]
         },
         {
@@ -49,7 +49,7 @@ encounters[id] = {
             image:"normal",
             text:"Well, you need to set a good example. There's no way you could possibly save these people, but you can do your best. Maybe give them a proper burial. You should do that much for them- $ swells in your heart.\n\nYou go at it with your ice pick, and work up a good sweat chipping the ice away until you're able to pry the corpses loose. Your extremities are numb, but there's still work to be done.\n\nYou break the frozen ground, digging chunks of permafrost away to make room. The seed looks on solemnly.",
             options:[
-                {text: "Continue",effect:"delta",bond:-1,frameIdx:6}
+                {text: "Continue",effect:"delta",bond:-1,frameIdx:6,resultPort:"ugh"}
             ]
         },
         {

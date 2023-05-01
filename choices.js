@@ -107,7 +107,6 @@ function setOptionBehavior(opt,optObj,enc){
             breakDarkness();
         }else{
             createjs.Sound.play("button");
-            console.log(opt.effect);
         }
 
         if(opt.resultPort){

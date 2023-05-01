@@ -4,7 +4,7 @@ encounters[id] = {
     id:id,
     desc:"Avalanche!",
     images:{
-        "normal":"assets/img/mockup/encountery.png"
+        "normal":"assets/img/event/avalanche.png"
     },
     frames:[
         {
@@ -43,7 +43,7 @@ encounters[id] = {
         {
             id:"warn2",
             image:"normal",
-            text:"-splits into a dozen radially even pieces that land in a wide circle around you.\n\nYou stare at her. She smiles at you. “Thanks for the warning!” (+1 @.) Like it was just nothing for her.\n\nAfter calming down a bit from the shock, you continue.",
+            text:"-splits into a dozen radially even pieces that land in a wide circle around you.\n\nYou stare at her. She smiles at you. \"Thanks for the warning!\" (+1 @.) Like it was just nothing for her.\n\nAfter calming down a bit from the shock, you continue.",
             options:[
                 {text: "Continue",effect:"end"}
             ]

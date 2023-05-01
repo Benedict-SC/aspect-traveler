@@ -11,7 +11,7 @@ encounters[id] = {
             image:"normal",
             text:"A heavy snow has begun to fall. The white flakes are falling densely, but not whippingly fast; there is little wind, thankfully, and it's not too hard to keep the worst of the cold away from your face.\n\nBeside you, the star walks forward, blithely ignoring the cold as she's always done.\n\n...You see a shadow ahead of you, in the snow. Another traveler? They're coming towards you.",
             options: [
-                {text: "Keep going.",effect:"none",frameIdx:1}
+                {text: "Keep going.",effect:"none",frameIdx:1,resultPort:"fear"}
             ]
         },
         {
@@ -26,18 +26,18 @@ encounters[id] = {
             image:"normal",
             text:"The Star stands there with an unnatural stillness, as if she fears to move.\n\nThe shadow whispers to her and you.\n\n\"You are not where you should be, seed. This is a transgression. Yet I am not without reason. Accept my touch, take my mark, and you shall have passage.\"",
             options:[
-                {text: "Repel with $$$",condition:"moteMinimum",conditionMote:"HEAT",conditionValue:3,effect:"delta",heat:-3,frameId:"repel"},
-                {text: "Accept their touch (!!!{$!!!)",effect:"minimize",motes:["light","heat"],frameId:"accept"},
-                {text: "Flee ({@)",effect:"delta",light:-1,bond:-1,frameId:"flee"}
+                {text: "Repel with $$$",condition:"moteMinimum",conditionMote:"HEAT",conditionValue:3,effect:"delta",heat:-3,frameId:"repel",port:"angry",resultPort:"halo"},
+                {text: "Accept their touch (!!!{$!!!)",effect:"minimize",motes:["light","heat"],frameId:"accept",port:"sad"},
+                {text: "Flee ({@)",effect:"delta",light:-1,bond:-1,frameId:"flee",port:"fear",resultPort:"ugh"}
             ]
         },
         {
             image:"normal",
             text:"The Star clings to your arm, as if she's afraid.\n\nThe shadow whispers to her and you.\n\n\"You are not where you should be, seed. This is a transgression. Yet I am not without reason. Accept my touch, take my mark, and you shall have passage.\"",
             options:[
-                {text: "Repel with $$$",condition:"moteMinimum",conditionMote:"HEAT",conditionValue:3,effect:"delta",heat:-3,frameId:"repel"},
-                {text: "Accept their touch (!!!{$!!!)",effect:"minimize",motes:["light","heat"],frameId:"accept"},
-                {text: "Flee ({@)",effect:"delta",light:-1,bond:-1,frameId:"flee"}
+                {text: "Repel with $$$",condition:"moteMinimum",conditionMote:"HEAT",conditionValue:3,effect:"delta",heat:-3,frameId:"repel",port:"angry",resultPort:"halo"},
+                {text: "Accept their touch (!!!{$!!!)",effect:"minimize",motes:["light","heat"],frameId:"accept",port:"sad"},
+                {text: "Flee ({@)",effect:"delta",light:-1,bond:-1,frameId:"flee",port:"fear",resultPort:"ugh"}
             ]
         },
         {
@@ -61,7 +61,7 @@ encounters[id] = {
             image:"normal",
             text:"You have no choice but to submit. The spirit sets one cold clawed hand upon the star's forehead, and it is done. It vanishes immediately, and with it goes the storm. (Drained { and $.)\n\n...So... what did it do, exactly?\n\nThe star looks up, a blank expression on their face. \"That entity was a creature of cold-and-void. Its nature is to bring about void through cold. It is a being of the entropic-nature, and having taken its mark, I now have the entropic-nature within me as well, and that nature will be passed into any universe of my creation.\"",
             options:[
-                {text: "That... doesn't sound good?",effect:"delta",cold:6,frameId:"accept2"}
+                {text: "That... doesn't sound good?",effect:"delta",cold:6,frameId:"accept2",resultPort:"annoyed"}
             ]
         },
         {

@@ -63,7 +63,6 @@ function performProgression(nomove = false){
         return;
     }
     eventIndex++;
-    console.log('event index is: ' + eventIndex);
     let bigger = eventIndex == 5 || eventIndex == 11;
     let pool = eventTrack[eventIndex];
     let randomEventIndex = Math.floor(Math.random()*pool.length);

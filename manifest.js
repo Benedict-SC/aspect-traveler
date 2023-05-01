@@ -23,6 +23,7 @@ var manifest = [
     {id:"darkness",src:"assets/img/ui/blackout.png"},
     {id:"port-angry",src:"assets/img/ports/angry.png"},
     {id:"port-annoyed",src:"assets/img/ports/annoyed.png"},
+    {id:"port-confused",src:"assets/img/ports/confused.png"},
     {id:"port-ehehe",src:"assets/img/ports/ehehe.png"},
     {id:"port-fear",src:"assets/img/ports/fear.png"},
     {id:"port-gleeful",src:"assets/img/ports/gleeful.png"},
