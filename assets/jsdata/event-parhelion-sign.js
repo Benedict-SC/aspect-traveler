@@ -4,7 +4,7 @@ encounters[id] = {
     id:id,
     desc:"Parhelion Sign",
     images:{
-        "normal":"assets/img/mockup/parhelion.png"
+        "normal":"assets/img/event/parhelion_sign.png"
     },
     frames:[
         {

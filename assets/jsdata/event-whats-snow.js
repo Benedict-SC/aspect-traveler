@@ -4,7 +4,7 @@ encounters[id] = {
     id:id,
     desc:"What's snow?",
     images:{
-        "normal":"assets/img/mockup/snow.png"
+        "normal":"assets/img/event/snow4.png"
     },
     frames:[
         {

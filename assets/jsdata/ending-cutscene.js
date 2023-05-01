@@ -4,7 +4,11 @@ encounters[id] = {
     id:id,
     desc:"The top of the mountain",
     images:{
-        "normal":"assets/img/mockup/encountery.png"
+        "normal":"assets/img/event/ending1.png",
+        "shining":"assets/img/event/ending2.png",
+        "rising":"assets/img/event/ending3.png",
+        "gone":"assets/img/event/ending4.png",
+        "empty":"assets/img/event/encountery.png"
     },
     frames:[
         {
@@ -64,7 +68,7 @@ encounters[id] = {
         },
         {
             id:"wait",
-            image:"normal",
+            image:"shining",
             text:"The two of you wait.\n\nAnd soon enough, the night falls.\n\nYou were wondering if there might be one last final step, or an ultimate challenge to overcome, but nothing of the sort appears. Instead, she simply rises off the ground, seemingly not even of her own volition, as though the hand of an invisible clock had struck some appointed hour.\n\n\"It's time,\" she says, and her star-halo lights up at full intensity behind her.",
             options: [
                 {text: "It's time.",effect:"none",condition:"leavewish",hidden:true,frameId:"leavewish"},
@@ -74,7 +78,7 @@ encounters[id] = {
         },
         {
             id:"leavewish",
-            image:"normal",
+            image:"rising",
             text:"She's drifting up and away. You get the impression that at any moment the sky might reel her up and take her home at any moment.\n\nThe star peers at you, one last time, as the halo around her waxes in intensity.\n\n\"Back at the beginning of all this,\" she says slowly, \"You named a price for this journey. You asked whether you could come with me, as the reward for bringing me all the way here.\"",
             options: [
                 {text: "You nod.",effect:"none",frameId:"leavewish2"}
@@ -82,7 +86,7 @@ encounters[id] = {
         },
         {
             id:"leavewish2",
-            image:"normal",
+            image:"rising",
             text:"She stretches a hand out towards you, while you're still in range to grab onto it.\n\nBut it's been a long time, since then, and you've had a lot of time to think.\n\nDo you still want to go with her, and leave everything here behind?",
             options: [
                 {text:"Go with her.",effect:"none",frameId:"depart"},
@@ -91,7 +95,7 @@ encounters[id] = {
         },
         {
             id:"volunteer",
-            image:"normal",
+            image:"rising",
             text:"She's drifting up and away. You get the impression that at any moment the sky might reel her up and take her home at any moment.\n\n\"Sure was an adventure we had, huh?\"\n\nYou agree.\n\n\"What if you could have more?\"",
             options: [
                 {text: "What do you mean?",effect:"none",frameId:"volunteer2"}
@@ -99,7 +103,7 @@ encounters[id] = {
         },
         {
             id:"volunteer2",
-            image:"normal",
+            image:"rising",
             text:"She stretches a hand out towards you, while you're still in range to grab onto it.\n\n\"Come with me,\" she says, as she continues to slowly rise.\n\nYou hadn't realized that was an option available to you.\n\nDo you want to go with her, and see what lies beyond the sky together?",
             options: [
                 {text:"Go with her.",effect:"none",frameId:"depart"},
@@ -108,7 +112,7 @@ encounters[id] = {
         },
         {
             id:"depart",
-            image:"normal",
+            image:"empty",
             text:"You take her hand.\n\nThe two of you rise through the sky together, and leave the world below you behind.\n\nAhead of you, a vast future full of possibilities awaits.",
             options: [
                 {text: "THE END",condition:"moteMinimum",conditionValue:999,conditionMote:"BOND",effect:"none"}
@@ -116,7 +120,7 @@ encounters[id] = {
         },
         {
             id:"watch",
-            image:"normal",
+            image:"gone",
             text:"She nods and accepts your choice.\n\nYou watch as she shrinks, until she fades into a pale speck in the sky, and you keep watching until you can no longer make her out.",
             options: [
                 {text: "And then...",effect:"none",frameId:"watch2"}
@@ -124,7 +128,7 @@ encounters[id] = {
         },
         {
             id:"watch2",
-            image:"normal",
+            image:"gone",
             text:"You returned to your usual life.\n\nYou told people about what had happened to you. They mostly didn't believe you, unsurprisingly to you. Some of them did, and of those who did, some of them went to the mountain, to see if they could find a fallen star of their own. If any of them did, you never heard back from them.\n\nAnd every once in a while, you looked up at the heavens, wondering if your star could still see you, all the way up there.",
             options: [
                 {text: "THE END",condition:"moteMinimum",conditionValue:999,conditionMote:"BOND",effect:"none"}
@@ -132,7 +136,7 @@ encounters[id] = {
         },
         {
             id:"treasure",
-            image:"normal",
+            image:"rising",
             text:"She's floating now.\n\n\"Back at the beginning of all this,\" she says slowly, \"I remember that you named a price for this journey. You asked for a treasure to call your own, as the reward for bringing me all the way here.\"\nYou nod.\n\n\"I am about to ascend,\" she says, looking up at the sky. \"And as I ascend, I will have to choose what aspects of this experience I will weave into my new self, and which parts I will cast away and leave behind. And that which I take with me will become a part of me, from then on.\"",
             options: [
                 {text: "...She sounds like the angel, when she talks like that.",effect:"none",frameId:"treasure2"}
@@ -140,7 +144,7 @@ encounters[id] = {
         },
         {
             id:"treasure2",
-            image:"normal",
+            image:"rising",
             text:"\"Ordinarily, that which I discard would quietly disperse back into the world again. But because you have asked it as your price, I will condense that which I would discard into a tool of great magic for you instead, to grant upon you a treasure you may wield henceforth, as the proof of your journey here.\"\n\nAh.\n\n\"And so I ask you- what should I cast away? What do you want me to leave behind for you?\"",
             options: [
                 {text: "Leave behind the bonds we formed.",condition:"moteMinimum",conditionValue:3,conditionMote:"BOND",effect:"delta",bond:-3,frameId:"treasureBond1"},
@@ -154,7 +158,7 @@ encounters[id] = {
         },
         {
             id:"treasureBond1",
-            image:"normal",
+            image:"gone",
             text:"She nods and accepts your choice.\n\nYou watch as she shrinks, until she fades into a pale speck in the sky, and you keep watching until you can no longer make her out.\n\nYou continue waiting, until a pendant drops out from the sky and falls to the snow before you.",
             options: [
                 {text: "Take it.",effect:"none",frameId:"treasureBond2"}
@@ -162,7 +166,7 @@ encounters[id] = {
         },
         {
             id:"treasureBond2",
-            image:"normal",
+            image:"gone",
             text:"You found the pendant a comfort to you. After you returned home, you took to wearing the pendant constantly, and when you did, you found that friendships and love came to you easily, as though something was bending the world itself aside to bring new connections to you.\n\nAnd you returned to your usual life.\n\nAnd every once in a while, you looked up at the heavens, wondering if your star could still see you, all the way up there.",
             options: [
                 {text: "THE END",condition:"moteMinimum",conditionValue:999,conditionMote:"BOND",effect:"none"}
@@ -170,7 +174,7 @@ encounters[id] = {
         },
         {
             id:"treasureHeat1",
-            image:"normal",
+            image:"gone",
             text:"She nods and accepts your choice.\n\nYou watch as she shrinks, until she fades into a pale speck in the sky, and you keep watching until you can no longer make her out.\n\nYou continue waiting, until a ruby drops out from the sky and falls to the snow before you.",
             options: [
                 {text: "Take it.",effect:"none",frameId:"treasureHeat2"}
@@ -178,7 +182,7 @@ encounters[id] = {
         },
         {
             id:"treasureHeat2",
-            image:"normal",
+            image:"gone",
             text:"You found that the ruby kept you warm, as you descended the mountain. When you return home, you set it carefully into a ring around your finger, and from that day on flames would no longer scorch you so long as you wore the ring.\n\nAnd you returned to your usual life.\n\nAnd every once in a while, you looked up at the heavens, wondering if your star could still see you, all the way up there.",
             options: [
                 {text: "THE END",condition:"moteMinimum",conditionValue:999,conditionMote:"BOND",effect:"none"}
@@ -186,7 +190,7 @@ encounters[id] = {
         },
         {
             id:"treasureCold1",
-            image:"normal",
+            image:"gone",
             text:"She nods and accepts your choice.\n\nYou watch as she shrinks, until she fades into a pale speck in the sky, and you keep watching until you can no longer make her out.\n\nYou continue waiting, until a fang drops out from the sky and falls to the snow before you.",
             options: [
                 {text: "Take it.",effect:"none",frameId:"treasureCold2"}
@@ -194,7 +198,7 @@ encounters[id] = {
         },
         {
             id:"treasureCold2",
-            image:"normal",
+            image:"gone",
             text:"You found that the fang warded away wild beasts of the mountain, as you descended. When you returned home, you set it over the headposts of your bed, and from that day on your dreams were never troubled by nightmares again.\n\nAnd you returned to your usual life.\n\nAnd every once in a while, you looked up at the heavens, wondering if your star could still see you, all the way up there.",
             options: [
                 {text: "THE END",condition:"moteMinimum",conditionValue:999,conditionMote:"BOND",effect:"none"}
@@ -202,7 +206,7 @@ encounters[id] = {
         },
         {
             id:"treasureLight1",
-            image:"normal",
+            image:"gone",
             text:"She nods and accepts your choice.\n\nYou watch as she shrinks, until she fades into a pale speck in the sky, and you keep watching until you can no longer make her out.\n\nYou continue waiting, until a diamond drops out from the sky and falls to the snow before you.",
             options: [
                 {text: "Take it.",effect:"none",frameId:"treasureLight2"}
@@ -210,7 +214,7 @@ encounters[id] = {
         },
         {
             id:"treasureLight2",
-            image:"normal",
+            image:"gone",
             text:"You found that looking through the diamond allowed you to see anything as through it was lit by a bright and clear day. When you returned home, you set the diamond into a monocle, and from then on you needed not worry about darkness or mist obscuring your vision ever again.\n\nAnd you returned to your usual life.\n\nAnd every once in a while, you looked up at the heavens, wondering if your star could still see you, all the way up there.",
             options: [
                 {text: "THE END",condition:"moteMinimum",conditionValue:999,conditionMote:"BOND",effect:"none"}
@@ -218,7 +222,7 @@ encounters[id] = {
         },
         {
             id:"treasureEarth1",
-            image:"normal",
+            image:"gone",
             text:"She nods and accepts your choice.\n\nYou watch as she shrinks, until she fades into a pale speck in the sky, and you keep watching until you can no longer make her out.\n\nYou continue waiting, until a hemp string drops out from the sky and falls to the snow before you.",
             options: [
                 {text: "Take it.",effect:"none",frameId:"treasureEarth2"}
@@ -226,7 +230,7 @@ encounters[id] = {
         },
         {
             id:"treasureEarth2",
-            image:"normal",
+            image:"gone",
             text:"Tying the string around your wrist, you found that the string granted you exceptionally steady footing. It was a subtle thing, but you found that you never once stumbled or tripped, on your way down the mountain.\n\nAnd you returned to your usual life.\n\nAnd every once in a while, you looked up at the heavens, wondering if your star could still see you, all the way up there.",
             options: [
                 {text: "THE END",condition:"moteMinimum",conditionValue:999,conditionMote:"BOND",effect:"none"}
@@ -234,7 +238,7 @@ encounters[id] = {
         },
         {
             id:"treasureAir1",
-            image:"normal",
+            image:"gone",
             text:"She nods and accepts your choice.\n\nYou watch as she shrinks, until she fades into a pale speck in the sky, and you keep watching until you can no longer make her out.\n\nYou continue waiting, until a book drops out from the sky and falls to the snow before you.",
             options: [
                 {text: "Take it.",effect:"none",frameId:"treasureAir2"}
@@ -242,7 +246,7 @@ encounters[id] = {
         },
         {
             id:"treasureAir2",
-            image:"normal",
+            image:"gone",
             text:"Opening the book, you saw words appear by themselves on the blank white pages, giving you directions for how to get home. When you returned home, you set the book into a bookshelf, and from then on you consulted the book for advice whenever you needed directions, and found its advice unerringly helpful each and every time.\n\nAnd you returned to your usual life.\n\nAnd every once in a while, you looked up at the heavens, wondering if your star could still see you, all the way up there.",
             options: [
                 {text: "THE END",condition:"moteMinimum",conditionValue:999,conditionMote:"BOND",effect:"none"}
@@ -250,7 +254,7 @@ encounters[id] = {
         },
         {
             id:"treasureNone1",
-            image:"normal",
+            image:"gone",
             text:"You didn't realize it came with a cost.\n\n...You don't want it. Not if it costs her something like that.\n\nShe nods and accepts your choice.\n\nYou watch as she shrinks, until she fades into a pale speck in the sky, and you keep watching until you can no longer make her out.",
             options: [
                 {text: "And then...",effect:"none",frameId:"watch2"}

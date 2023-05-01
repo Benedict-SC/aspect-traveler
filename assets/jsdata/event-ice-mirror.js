@@ -4,7 +4,7 @@ encounters[id] = {
     id:id,
     desc:"Ice mirror",
     images:{
-        "normal":"assets/img/mockup/mirror1.png",
+        "normal":"assets/img/event/icemirror.png",
         "colder":"assets/img/mockup/mirror2.png",
         "frozen":"assets/img/mockup/mirror3.png",
         "dark":"assets/img/mockup/mirror4.png"

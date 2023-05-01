@@ -4,7 +4,7 @@ encounters[id] = {
     id:id,
     desc:"Cold malice",
     images:{
-        "normal":"assets/img/mockup/encountery.png"
+        "normal":"assets/img/event/cold_malice.png"
     },
     frames:[
         {

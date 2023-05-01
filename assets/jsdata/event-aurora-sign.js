@@ -4,7 +4,7 @@ encounters[id] = {
     id:id,
     desc:"Aurora Sign",
     images:{
-        "normal":"assets/img/mockup/auroraborealis.png"
+        "normal":"assets/img/event/aurora_sign.png"
     },
     frames:[
         {
