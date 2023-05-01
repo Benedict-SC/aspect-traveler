@@ -36,6 +36,9 @@ function buildGame(){
     g.bg = new createjs.Bitmap(assets.bg);
     g.bg.x = 0;
     g.bg.y = 0;
+    g.bg2 = new createjs.Bitmap(assets.bg);
+    g.bg2.x = 900;
+    g.bg2.y = 0;
     g.overlay = new createjs.Bitmap(assets.overlay);
     g.overlay.x = 0;
     g.overlay.y = 0;
@@ -49,6 +52,7 @@ function buildGame(){
     g.charshadow.x = 0;
     g.charshadow.y = 0;
     stage.addChild(g.bg);
+    stage.addChild(g.bg2);
     stage.addChild(g.charshadow);
     stage.addChild(g.overlay);
     stage.addChild(g.char);
@@ -98,8 +102,10 @@ function loadEventFrame(encid, idx = 0){
         if(encid == null) return;
         g.encid = encid;
         let enc = encounters[encid];
+        if(idx == 0){
+            shiftBg();
+        }
         let frame = enc.frames[idx];
-    
         g.frameContainer = new createjs.Container();
     
         let options = frame.options;
@@ -196,6 +202,24 @@ function breakDarkness(){
     g.darkPercent = 0;
     g.darkness.alpha = g.darkPercent;
     createjs.Sound.volume = userMasterVolumePref * (1 - g.darkPercent);
+}
+function shiftBg(){
+    let progress = {val:0};
+    holdInput(progress);
+    let shiftfunc = function(event){
+        let secs = event.delta/1000;
+        progress.val += secs; //one second animation- no adjustment needed
+        let percentMoved = -(Math.cos(Math.PI * progress.val) - 1) / 2;
+        g.bg.x = Math.floor(percentMoved * -900);
+        g.bg2.x = 900 + Math.floor(percentMoved * -900);
+        if(progress.val > 1){
+            g.bg.x = 0;
+            g.bg2.x = 900;
+            freeHold(progress);
+            createjs.Ticker.removeEventListener("tick",shiftfunc);
+        }
+    }
+    createjs.Ticker.addEventListener("tick",shiftfunc);
 }
 createjs.Ticker.framerate = 60;
 function tick(event) { stage.update(event); }
