@@ -20,7 +20,7 @@ var manifest = [
     {id:"port-ehehe",src:"assets/img/ports/ehehe.png"},
     {id:"port-fear",src:"assets/img/ports/fear.png"},
     {id:"port-gleeful",src:"assets/img/ports/gleeful.png"},
-    {id:"port-gleeful2",src:"assets/img/ports/gleeful_2.png"},
+    {id:"port-gleeful_2",src:"assets/img/ports/gleeful_2.png"},
     {id:"port-halo",src:"assets/img/ports/halo.png"},
     {id:"port-hee",src:"assets/img/ports/hee.png"},
     {id:"port-neutral",src:"assets/img/ports/neutral.png"},
@@ -28,7 +28,13 @@ var manifest = [
     {id:"port-stoic",src:"assets/img/ports/stoic.png"},
     {id:"port-ugh",src:"assets/img/ports/ugh.png"},
     {id:"port-verysad",src:"assets/img/ports/verysad.png"},
-    {id:"port-gone",src:"assets/img/ports/gone.png"}
+    {id:"port-gone",src:"assets/img/ports/gone.png"},
+    {id:"goodchime",src:"assets/audio/chime.mp3",type:"sound"},
+    {id:"button",src:"assets/audio/button.mp3",type:"sound"},
+    {id:"damage",src:"assets/audio/damage.mp3",type:"sound"},
+    {id:"sadchime",src:"assets/audio/sad-chime.mp3",type:"sound"},
+    {id:"midchime",src:"assets/audio/mid-chime.mp3",type:"sound"},
+    {id:"bgm",src:"assets/audio/bgm.mp3",type:"sound"}
 ]
 //populate manifest from encounter data
 for(let i = 0; i < encounters.ids.length; i++){

@@ -4,12 +4,12 @@ var userMasterVolumePref = 1;
 function initSounds(){
     createjs.Sound.initializeDefaultPlugins();
     createjs.Sound.alternateExtensions = ["mp3"];
-    createjs.Sound.removeAllSounds();
-    createjs.Sound.registerSound("assets/audio/chime.mp3", "good-chime");
-    createjs.Sound.registerSound("assets/audio/mid-chime.mp3", "mid-chime");
-    createjs.Sound.registerSound("assets/audio/sad-chime.mp3", "sad-chime");
-    createjs.Sound.registerSound("assets/audio/button.mp3", "button");
-    createjs.Sound.registerSound("assets/audio/damage.mp3", "damage");
+    //createjs.Sound.removeAllSounds();
+    //createjs.Sound.registerSound("assets/audio/chime.mp3", "good-chime");
+    //createjs.Sound.registerSound("assets/audio/mid-chime.mp3", "mid-chime");
+    //createjs.Sound.registerSound("assets/audio/sad-chime.mp3", "sad-chime");
+    //createjs.Sound.registerSound("assets/audio/button.mp3", "button");
+    //createjs.Sound.registerSound("assets/audio/damage.mp3", "damage");
 
     createjs.Sound.registerSound("assets/audio/bgm.mp3", "bgm");
     let loadHandler = function(event){

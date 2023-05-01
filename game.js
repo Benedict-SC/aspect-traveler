@@ -17,6 +17,7 @@ function holdInput(referent){
 
 function initializeGame(){
     var loadQueue = new createjs.LoadQueue(false,null,"Anonymous");
+    loadQueue.installPlugin(createjs.Sound);
     loadQueue.on("fileload",onFileLoad,this);
     loadQueue.on("complete",onFilesComplete,this);
     loadQueue.loadManifest(manifest);
@@ -182,6 +183,9 @@ function unloadEventFrame(whenDone){
 }
 function onFileLoad(event){
     assets[event.item.id] = event.result;
+    //if(event.item.ext == "mp3"){
+    //    createjs.Sound.registerSound(event.item.id,)
+    //}
 }
 function onFilesComplete(event){
     tryInit();
@@ -219,6 +223,17 @@ function getDarker(){
     if(g.darkPercent > 1) g.darkPercent = 1;
     g.darkness.alpha = g.darkPercent;
     createjs.Sound.volume = userMasterVolumePref * (1 - g.darkPercent);
+}
+function fadeMusic(){
+    let mutefunc = function(event){
+        let secs = event.delta/1000;
+        createjs.Sound.volume -= (secs/3);
+        if(createjs.Sound.volume <= 0){
+            createjs.Sound.volume = 0;
+            createjs.Ticker.removeEventListener("tick",mutefunc);
+        }
+    }
+    createjs.Ticker.addEventListener("tick",mutefunc);
 }
 function breakDarkness(){
     g.darkPercent = 0;
@@ -310,7 +325,6 @@ function dismissImbue(){
     createjs.Ticker.addEventListener("tick",summon);
 }
 function changePortraits(expression){
-    console.log("are we even calling this??");
     g.charFade.image = assets["port-" + expression];
     if(g.midFade){
         return;
@@ -320,7 +334,6 @@ function changePortraits(expression){
     let crossfade = function(event){
         let secs = event.delta/1000;
         percent += 5*secs;
-        console.log("a crossfade is happening (" + percent + " %)");
         if(expression == "gone"){
             g.char.alpha = 1 - percent;
             if(g.char.alpha > 1) g.char.alpha = 1;

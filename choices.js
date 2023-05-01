@@ -82,6 +82,7 @@ function setOptionBehavior(opt,optObj,enc){
         }else if(opt.effect == "end"){
             createjs.Sound.play("button");
             unloadEventFrame();
+            changePortraits("neutral");
             g.encid = null;
         }else if(opt.effect == "random"){
             let randomIndex = Math.floor(Math.random() * opt.subOpts.length);
@@ -90,6 +91,7 @@ function setOptionBehavior(opt,optObj,enc){
             processMoteChanges(opt.subOpts[randomIndex]);
             loadEventFrame(g.encid,efi);
         }else if(opt.effect == "restoreVolume"){
+            createjs.Sound.play("damage");
             breakDarkness();
         }else{
             createjs.Sound.play("button");
@@ -98,6 +100,9 @@ function setOptionBehavior(opt,optObj,enc){
 
         if(opt.resultPort){
             changePortraits(opt.resultPort);
+        }
+        if(opt.fadeMusic){
+            fadeMusic();
         }
 
         if(opt.frameIdx || opt.frameIdx === 0){
@@ -141,11 +146,11 @@ function processMoteChanges(opt,disablesound){
             }
             //check outcome and play result chimes
             if(ups > 0 && downs <= 0){
-                createjs.Sound.play("good-chime");
+                createjs.Sound.play("goodchime");
             }else if(downs > 0 && ups <= 0){
-                createjs.Sound.play("sad-chime");
+                createjs.Sound.play("sadchime");
             }else if(downs != 0 && ups != 0){
-                createjs.Sound.play("mid-chime");
+                createjs.Sound.play("midchime");
             }else{
                 createjs.Sound.play("button");
             }
