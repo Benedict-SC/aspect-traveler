@@ -76,7 +76,10 @@ function buildGame(){
         save:true,
         brought:true,
         knowing:true,
-        decide:false
+        decide:false,
+        leavewish:false,
+        volunteer:false,
+        treasure:false
     }
 
     g.motes = [
@@ -270,7 +273,7 @@ function buildSeed(){
     g.seed.addChild(seedShape);
     g.seed.x = 20;
     g.seed.y = -2;
-    seedShape.addEventListener("mouseover",function(event){
+    /*seedShape.addEventListener("mouseover",function(event){
         seedImg.image = assets.seedglow;
     });
     seedShape.addEventListener("mouseout",function(event){
@@ -282,7 +285,7 @@ function buildSeed(){
         }else if(g.imbueSummonState == 1){
             dismissImbue();
         }
-    })
+    })*/
 }
 function summonImbue(){
     return; //not yet implemented

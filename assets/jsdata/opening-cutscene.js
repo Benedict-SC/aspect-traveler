@@ -114,9 +114,9 @@ encounters[id] = {
             image:"morefaded",
             text:"The angel is dying.\n\nIn its arms is the glowing star.",
             options:[
-                {text: "Take the star. You can't just leave it here by itself.",effect:"delta",bond:1,heat:1,frameId:"cantleave"},
-                {text: "Take the star. It's the angel's last wish.",effect:"delta",heat:2,frameId:"lastwish"},
-                {text: "Take the star. You were heading up anyways!",effect:"delta",air:1,heat:1,frameId:"anyway"},
+                {text: "Take the star. You can't just leave it here by itself.",effect:"delta",bond:1,heat:1,frameId:"cantleave",flag:"volunteer"},
+                {text: "Take the star. It's the angel's last wish.",effect:"delta",heat:2,frameId:"lastwish",flag:"volunteer"},
+                {text: "Take the star. You were heading up anyways!",effect:"delta",air:1,heat:1,frameId:"anyway",flag:"volunteer"},
                 {text: "Step backwards.",effect:"delta",cold:1,frameId:"step"}
             ]
         },
@@ -157,9 +157,9 @@ encounters[id] = {
             image:"morefaded",
             text:"...perhaps it can give you what you want, the thought fills your mind desperately. Perhaps it has something to offer you.\n\nYou mull it over.\n\n...There is, in fact, something you want, that you think that the angel could give you.\n\nWhat you want is...",
             options:[
-                {text: "An escape.",effect:"none",frameId:"escape"},
-                {text: "Higher understanding.",effect:"none",frameId:"understanding"},
-                {text: "A treasure.",effect:"none",frameId:"treasure"}
+                {text: "An escape.",effect:"none",frameId:"escape",flag:"leavewish"},
+                {text: "Higher understanding.",effect:"none",frameId:"understanding",flag:"leavewish"},
+                {text: "A treasure.",effect:"none",frameId:"treasure",flag:"treasure"}
             ]
         },
         {
@@ -181,7 +181,7 @@ encounters[id] = {
         {
             id:"understanding",
             image:"fadest",
-            text:"You've never felt like you belonged in this world. You've always felt… distant. Like there's something more that you should be doing, or reaching. Somewhere else you should be. That's why you came here, to this mountain. You felt like something was calling you.\n\nYou have never felt this way more than you do now, in the face of something so undeniably alien from everything you know.\n\nYou want to know more. You want to know the truth of the world.",
+            text:"You've never felt like you belonged in this world. You've always felt... distant. Like there's something more that you should be doing, or reaching. Somewhere else you should be. That's why you came here, to this mountain. You felt like something was calling you.\n\nYou have never felt this way more than you do now, in the face of something so undeniably alien from everything you know.\n\nYou want to know more. You want to know the truth of the world.",
             options:[
                 {text: "You want to see everything.",effect:"delta",light:1,frameId:"understanding2"}
             ]
@@ -197,7 +197,7 @@ encounters[id] = {
         {
             id:"treasure",
             image:"fadest",
-            text:"You have touched the edge of grace.\n\nYou can't imagine coming face-to-face with an angel and a star, and coming away from the encounter with… nothing. To go home with nothing in your hands to show for it but an unbelievable tale and a sigh.\n\nEven the hardest stone would surely dispense a small chip for you, if you worked at it for long enough.\n\nSurely a numinous, heavenly fallen-star could spare you some dregs of magic, at the end of the journey.",
+            text:"You have touched the edge of grace.\n\nYou can't imagine coming face-to-face with an angel and a star, and coming away from the encounter with... nothing. To go home with nothing in your hands to show for it but an unbelievable tale and a sigh.\n\nEven the hardest stone would surely dispense a small chip for you, if you worked at it for long enough.\n\nSurely a numinous, heavenly fallen-star could spare you some dregs of magic, at the end of the journey.",
             options:[
                 {text: "Nothing special.",effect:"delta",earth:1,frameId:"treasure2"}
             ]
@@ -245,7 +245,7 @@ encounters[id] = {
         {
             id:"reach5",
             image:"gone",
-            text:"You gesture at the angel, kneeling in the snow behind the star.\n\nIt is certainly dead, now. It's not the kind of certainty that comes from angel-speech. It's just… normal certainty, from the coolness of its body, and the stony pallor of its skin, and the way its fiery wings have faded to ash.\n\nThe star turns around, sets her eyes on the angel's corpse as if she's truly seeing the angel's sorry state for the first time, and starts bawling uncontrollably.",
+            text:"You gesture at the angel, kneeling in the snow behind the star.\n\nIt is certainly dead, now. It's not the kind of certainty that comes from angel-speech. It's just... normal certainty, from the coolness of its body, and the stony pallor of its skin, and the way its fiery wings have faded to ash.\n\nThe star turns around, sets her eyes on the angel's corpse as if she's truly seeing the angel's sorry state for the first time, and starts bawling uncontrollably.",
             options:[
                 {text: "It'll be okay.",effect:"none",frameId:"reach6"}
             ]

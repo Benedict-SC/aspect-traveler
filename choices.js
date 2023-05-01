@@ -15,6 +15,12 @@ function setOptions(options,container){
                 eventValid = mote.count >= opt.conditionValue;
             }else if(opt.condition == "opening"){
                 eventValid = g.openingFlags[opt.flag];
+            }else if(opt.condition == "leavewish"){
+                eventValid = g.openingFlags["leavewish"];
+            }else if(opt.condition == "volunteer"){
+                eventValid = g.openingFlags["volunteer"];
+            }else if(opt.condition == "treasure"){
+                eventValid = g.openingFlags["treasure"];
             }
         }
         if(opt.hidden && !eventValid){
@@ -62,7 +68,7 @@ function setOptionBehavior(opt,optObj,enc){
             getDarker();
         }
         if(opt.flag){
-            g.openingFlags[opt.flag] = false;//!g.openingFlags[opt.flag];
+            g.openingFlags[opt.flag] = !g.openingFlags[opt.flag];
             if(!(g.openingFlags["whatwhy"] || g.openingFlags["save"] || g.openingFlags["brought"] || g.openingFlags["knowing"])){
                 g.openingFlags.decide = true;
             }
