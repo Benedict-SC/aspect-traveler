@@ -38,3 +38,39 @@ function setMasterVolume(vol){
     userMasterVolumePref = vol;
     createjs.Sound.volume = userMasterVolumePref;
 }
+var volState = 0;
+var musState = 0;
+function toggleVolume(){
+    volState++;
+    volState = volState % 4;
+    if(volState == 0){
+        setMasterVolume(1);
+        g.vicon.image = assets["loud"];
+    }else if(volState == 1){
+        setMasterVolume(.5);
+        g.vicon.image = assets["mid"];
+    }else if(volState == 2){
+        setMasterVolume(.18);
+        g.vicon.image = assets["quiet"];
+    }else if(volState == 3){
+        setMasterVolume(0);
+        g.vicon.image = assets["mute"];
+    }
+}
+function toggleMusic(){
+    musState++;
+    musState = musState % 4;
+    if(musState == 0){
+        setBgmVolume(1);
+        g.micon.image = assets["m-loud"];
+    }else if(musState == 1){
+        setBgmVolume(.5);
+        g.micon.image = assets["m-mid"];
+    }else if(musState == 2){
+        setBgmVolume(.18);
+        g.micon.image = assets["m-quiet"];
+    }else if(musState == 3){
+        setBgmVolume(0);
+        g.micon.image = assets["m-mute"];
+    }
+}

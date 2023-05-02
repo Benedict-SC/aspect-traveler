@@ -13,7 +13,7 @@ encounters[id] = {
             options: [
                 {text: "Dodge it!",effect:"delta",air:-1,frameId:"dodge",port:"fear",resultPort:"gone"},
                 {text: "Warn her first!",effect:"delta",earth:-2,frameId:"warn",port:"confused",resultPort:"halo"},
-                {text: "Shove her out of the way!",effect:"delta",bond:-2,frameId:"shove",port:"fear"}
+                {text: "Shove her out of the way!",effect:"delta",bond:-10,frameId:"shove",port:"fear"}
             ]
         },
         {
@@ -51,7 +51,7 @@ encounters[id] = {
         {
             id:"shove",
             image:"normal",
-            text:"You shove the star out of the way, just in time.\n\nYou're not going to be able to avoid being crushed by the boulder, but at least you got the star out of the way. Maybe she'll be able to reach the top on her own. She's the one with the magic, after all.\n\nThe boulder hits you,\n-@@\nAnd everything disappears.",
+            text:"You shove the star out of the way, just in time.\n\nYou're not going to be able to avoid being crushed by the boulder, but at least you got the star out of the way. Maybe she'll be able to reach the top on her own. She's the one with the magic, after all.\n\nThe boulder hits you,\n-@@@@@@@@@@\nAnd everything disappears.",
             options:[
                 {text: "Game Over >",effect:"none",frameId:"shove2",resultPort:"gone"}
             ]

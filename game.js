@@ -71,6 +71,31 @@ function buildGame(){
     stage.addChild(g.seed);
     stage.addChild(g.imbue);
 
+    g.volumeControl = new createjs.Container();
+    g.vicon = new createjs.Bitmap(assets["loud"]);
+    let vshape = new createjs.Shape();
+    vshape.graphics.beginFill("#000000").drawRoundRect(0,0,20,20,3);
+    g.volumeControl.addChild(vshape);
+    g.volumeControl.addChild(g.vicon);
+    g.volumeControl.x = 876;
+    g.volumeControl.y = 2;
+    g.vicon.x = 3;
+    g.vicon.y = 3;
+    vshape.addEventListener("click",function(event){toggleVolume()});
+    stage.addChild(g.volumeControl);
+    g.musicControl = new createjs.Container();
+    g.micon = new createjs.Bitmap(assets["m-loud"]);
+    let mshape = new createjs.Shape();
+    mshape.graphics.beginFill("#000000").drawRoundRect(0,0,20,20,3);
+    g.musicControl.addChild(mshape);
+    g.musicControl.addChild(g.micon);
+    g.musicControl.x = 876;
+    g.musicControl.y = 26;
+    g.micon.x = 3;
+    g.micon.y = 3;
+    mshape.addEventListener("click",function(event){toggleMusic()});
+    stage.addChild(g.musicControl);
+
     g.openingFlags = {
         whatwhy:true,
         save:true,
